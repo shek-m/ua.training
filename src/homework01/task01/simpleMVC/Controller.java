@@ -21,14 +21,12 @@ public class Controller {
 
     //Work method
     public void processUser(){
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try{
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
             for (int i = 0; i < 2; i++) {
                 model.constructString(getInputFromUser(reader));
                 if (i==0)
                     model.constructString(" ");
             }
-            reader.close();
         }
         catch (IOException ignored){}
 
@@ -47,6 +45,7 @@ public class Controller {
     }
 
     public boolean isAcceptable(String str){
-        return str.equals("Hello") && model.getValue().isEmpty() || str.equals("world!") && !model.getValue().isEmpty();
+        return (str.equals("Hello") && model.getValue().isEmpty())
+                || (str.equals("world!") && !model.getValue().isEmpty());
     }
 }
