@@ -1,0 +1,11 @@
+package homework02.task01.gamingJava;
+
+public class Main {
+    public static void main(String[] args) {
+        Model model = new Model();
+        View view = new View();
+        Controller controller = new Controller(model, view);
+
+        controller.processUser();
+    }
+}
