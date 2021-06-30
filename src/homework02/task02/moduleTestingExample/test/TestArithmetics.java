@@ -39,6 +39,11 @@ public class TestArithmetics {
     }
 
     @Test
+    public void commitTest() {
+        Assert.fail();
+    }
+
+    @Test
     public void testDiv() {
         double res = a.div(10, 5);
         Assert.assertEquals(res, 2.0, 0.00001d);
