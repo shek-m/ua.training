@@ -1,4 +1,4 @@
-package homework02.task01.gamingJava;
+package homework02.task01.moreOrLessGame;
 
 import java.io.BufferedReader;
 import java.io.IOException;

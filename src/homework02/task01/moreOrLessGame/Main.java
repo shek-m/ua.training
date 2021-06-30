@@ -1,4 +1,4 @@
-package homework02.task01.gamingJava;
+package homework02.task01.moreOrLessGame;
 
 public class Main {
     public static void main(String[] args) {
