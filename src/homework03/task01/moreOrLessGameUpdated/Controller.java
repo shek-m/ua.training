@@ -32,7 +32,7 @@ public class Controller {
     }
 
     //Utility methods
-    private int getInputIntFromUser(BufferedReader reader) {
+    public int getInputIntFromUser(BufferedReader reader) {
         int usersNumber;
         try {
             usersNumber = Integer.parseInt(reader.readLine());
