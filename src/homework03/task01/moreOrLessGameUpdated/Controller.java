@@ -36,7 +36,7 @@ public class Controller {
         int usersNumber;
         try {
             usersNumber = Integer.parseInt(reader.readLine());
-            if (isAcceptable(usersNumber)) {
+            if (model.isMatchingTheRange(usersNumber)) {
                 return usersNumber;
             } else {
                 view.printMessage(View.INCORRECT_INPUT, model.getLowerBound(), model.getHigherBound());
@@ -46,9 +46,5 @@ public class Controller {
             view.printMessage(View.WRONG_INPUT);
             return getInputIntFromUser(reader);
         }
-    }
-
-    private boolean isAcceptable(int usersNumber) {
-        return model.isMatchingTheRange(usersNumber);
     }
 }

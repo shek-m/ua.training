@@ -44,4 +44,19 @@ public class TestModel {
             }
         }
     }
+
+    @Test
+    public void testIsMatchingTheRange() {
+        for (int i = -10000; i <= GlobalConstants.PRIMARY_LOWER_BARRIER; i++) {
+            Assert.assertFalse(m.isMatchingTheRange(i));
+        }
+
+        for (int i = GlobalConstants.PRIMARY_HIGHER_BARRIER; i < 10000; i++) {
+            Assert.assertFalse(m.isMatchingTheRange(i));
+        }
+
+        for (int i = GlobalConstants.PRIMARY_LOWER_BARRIER + 1; i < GlobalConstants.PRIMARY_HIGHER_BARRIER; i++) {
+            Assert.assertTrue(m.isMatchingTheRange(i));
+        }
+    }
 }
