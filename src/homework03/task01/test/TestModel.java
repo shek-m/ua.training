@@ -3,6 +3,7 @@ package homework03.task01.test;
 import homework03.task01.moreOrLessGameUpdated.GlobalConstants;
 import homework03.task01.moreOrLessGameUpdated.Model;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -12,6 +13,10 @@ public class TestModel {
     @BeforeClass
     public static void init() {
         m = new Model();
+    }
+
+    @Before
+    public void setPrimaryBarrier() {
         m.setPrimaryBarrier(GlobalConstants.PRIMARY_LOWER_BARRIER, GlobalConstants.PRIMARY_HIGHER_BARRIER);
     }
 
