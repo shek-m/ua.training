@@ -17,13 +17,12 @@ public class TestModel {
 
     @Test
     public void testPickRandomNumber() {
-        boolean[] arr = new boolean[101];
-        for (int i = 0; i < 1000000; i++) {
-            arr[m.pickRandomNumber()] = true;
-        }
-
-        if (!arr[1] || !arr[99] || arr[0] || arr[100]) {
-            Assert.fail("incorrect random range");
+        int numb;
+        for (int i = 0; i < 10000000; i++) {
+            numb = m.pickRandomNumber();
+            if (numb <= GlobalConstants.PRIMARY_LOWER_BARRIER || numb >= GlobalConstants.PRIMARY_HIGHER_BARRIER) {
+                Assert.fail("incorrect value");
+            }
         }
     }
 }
