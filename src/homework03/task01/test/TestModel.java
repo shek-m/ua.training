@@ -25,4 +25,18 @@ public class TestModel {
             }
         }
     }
+
+    @Test
+    public void testCheckValue() {
+        m.setPickedNumber(m.pickRandomNumber());
+        int secretVal = m.getPickedNumber();
+
+        for (int i = -100; i < 100; i++) {
+            if (!m.checkValue(secretVal + i) && i == 0) {
+                Assert.fail();
+            } else if (m.checkValue(secretVal + i) && i != 0) {
+                Assert.fail();
+            }
+        }
+    }
 }
