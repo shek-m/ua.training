@@ -54,6 +54,7 @@ public class Controller {
                     case 1: note.setNickname(inputStr);
                             break;
                 }
+                view.printMessage(View.CORRECT);
             } else {
                 view.printMessage(View.MISMATCH);
                 i--;
