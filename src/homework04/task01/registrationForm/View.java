@@ -1,5 +1,8 @@
 package homework04.task01.registrationForm;
 
+/**
+ * Created by MShekera on 04.07.2021
+ */
 public class View {
     //String constants
     public static final String INPUT_STRING = "Input the line..";

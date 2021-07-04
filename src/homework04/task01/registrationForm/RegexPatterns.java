@@ -1,5 +1,8 @@
 package homework04.task01.registrationForm;
 
+/**
+ * Created by MShekera on 04.07.2021
+ */
 public interface RegexPatterns {
     //Regex patterns
     //Surname (Latin, Cyrillic)

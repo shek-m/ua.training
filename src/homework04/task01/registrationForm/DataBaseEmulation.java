@@ -12,6 +12,7 @@ public class DataBaseEmulation {
 
     private DataBaseEmulation(){}
 
+    //Singleton
     public static DataBaseEmulation getInstance() {
         if (instance == null) {
             instance = new DataBaseEmulation();
