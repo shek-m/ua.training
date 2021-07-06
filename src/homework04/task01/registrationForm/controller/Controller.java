@@ -50,7 +50,7 @@ public class Controller {
         Scanner scanner = new Scanner(System.in);
         InputTheNote itn = new InputTheNote(view, scanner);
         view.setDesiredLocale(askUsersLocale(scanner));
-        db.add(itn.validateSingleNote());
+        db.add(itn.validateSingleNote());       //the note is stored in DataBaseEmulation storage
     }
 
     private Locale askUsersLocale(Scanner scan) {
@@ -68,6 +68,4 @@ public class Controller {
         }
         return locale;
     }
-
-
 }
