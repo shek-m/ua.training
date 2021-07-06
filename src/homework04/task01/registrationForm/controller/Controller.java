@@ -9,6 +9,7 @@
 
 package homework04.task01.registrationForm.controller;
 
+import homework04.task01.registrationForm.view.TextConstants;
 import homework04.task01.registrationForm.view.View;
 import homework04.task01.registrationForm.model.DataBaseEmulation;
 import homework04.task01.registrationForm.model.Note;
@@ -17,6 +18,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Scanner;
 
 /**
  * This class provides functionality, that allows to add the note entity to the storage
@@ -59,6 +62,22 @@ public class Controller {
         initActiveRegex();
         view.printMessage(View.INPUT_STRING);
         db.add(validateSingleNote(reader));
+    }
+
+    public Locale askUsersLocale(Scanner scan) {
+        int temp = 0;
+        Locale locale = Locale.US;
+        view.printMessage(View.bundle.getString(TextConstants.INPUT_ASK_FOR_LOCALE));
+
+        while (!(scan.hasNextInt() && ((temp = scan.nextInt()) == 1 || temp == 2))) {
+            view.printMessage(View.bundle.getString(TextConstants.INPUT_ERROR));
+        }
+        switch (temp) {
+            case 1: break;
+            case 2: locale = new Locale("ua", "UA");
+                    break;
+        }
+        return locale;
     }
 
     /**
@@ -112,7 +131,7 @@ public class Controller {
                     case 1: note.setNickname(inputStr);
                             break;
                 }
-                view.printMessage(View.CORRECT);
+                view.printMessage();
             } else {
                 view.printMessage(View.MISMATCH);
                 i--;
