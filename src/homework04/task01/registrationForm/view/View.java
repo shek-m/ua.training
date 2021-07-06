@@ -18,8 +18,9 @@ public class View {
         System.out.println(message);
     }
 
-    public void setDesiredLocale(String name, Locale locale) {
-        bundle = ResourceBundle.getBundle(name, locale);
+    public void setDesiredLocale(Locale locale) {
+        bundle = ResourceBundle.getBundle(TEXT_BUNDLE, locale);
+        regexBundle = ResourceBundle.getBundle(REGEX_BUNDLE, locale);
     }
 
     public String concatenationString(String... str) {
