@@ -1,4 +1,4 @@
-package homework04.task01.registrationForm;
+package homework04.task01.registrationForm.model;
 
 import java.util.ArrayList;
 

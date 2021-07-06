@@ -1,5 +1,8 @@
 package homework04.task01.registrationForm;
 
+import homework04.task01.registrationForm.controller.Controller;
+import homework04.task01.registrationForm.view.View;
+
 /**
  * Created by MShekera on 04.07.2021
  */

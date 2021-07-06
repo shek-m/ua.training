@@ -1,4 +1,4 @@
-package homework04.task01.registrationForm;
+package homework04.task01.registrationForm.view;
 
 /**
  * Created by MShekera on 04.07.2021

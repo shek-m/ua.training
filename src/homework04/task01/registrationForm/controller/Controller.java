@@ -7,7 +7,11 @@
  *
  */
 
-package homework04.task01.registrationForm;
+package homework04.task01.registrationForm.controller;
+
+import homework04.task01.registrationForm.view.View;
+import homework04.task01.registrationForm.model.DataBaseEmulation;
+import homework04.task01.registrationForm.model.Note;
 
 import java.io.BufferedReader;
 import java.io.IOException;
