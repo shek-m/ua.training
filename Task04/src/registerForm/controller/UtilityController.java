@@ -17,7 +17,6 @@ public class UtilityController {
         String str;
         view.printInputText(message);
         while (!(scan.hasNext() && ((str = scan.next()).matches(regex)))) {
-            System.out.println(regex);
             view.printWrongText(message);
         }
         return str;
