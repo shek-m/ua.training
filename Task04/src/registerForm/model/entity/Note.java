@@ -1,4 +1,4 @@
-package registerForm.model;
+package registerForm.model.entity;
 
 /**
  * Created by MShekera on 04.07.2021

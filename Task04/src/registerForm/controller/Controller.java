@@ -9,9 +9,10 @@
 
 package registerForm.controller;
 
+import registerForm.model.Model;
 import registerForm.view.TextConstants;
 import registerForm.view.View;
-import registerForm.model.DataBaseEmulation;
+import registerForm.model.entity.DataBaseEmulation;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -31,26 +32,27 @@ public class Controller {
     /** view variable is needed to print messages to console */
     private View view;
 
-    /** db variable refers to the storage for finished notes */
-    private DataBaseEmulation db = DataBaseEmulation.getInstance();
+    /** model variable refers to the storage for finished notes */
+      private Model model;
 
     /**
      * Creates new instance of Controller class
      * @param view instance for initialization of view variable
      */
-    public Controller(View view) {
+    public Controller(View view, Model model) {
         this.view = view;
+        this.model = model;
     }
 
     /**
      * This method is the moreOrLessGame.main working method of the class.
-     * The method adds the fully filled note to the storage (db).
+     * The method adds the fully filled note to the storage.
      */
     public void processNote() {
         Scanner scanner = new Scanner(System.in);
         InputTheNote itn = new InputTheNote(view, scanner);
         view.setDesiredLocale(askUsersLocale(scanner));
-        db.add(itn.validateSingleNote());       //the note is stored in DataBaseEmulation storage
+        model.addNote(itn.validateSingleNote());
     }
 
     private Locale askUsersLocale(Scanner scan) {

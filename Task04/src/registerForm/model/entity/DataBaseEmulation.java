@@ -1,4 +1,4 @@
-package registerForm.model;
+package registerForm.model.entity;
 
 import java.util.ArrayList;
 

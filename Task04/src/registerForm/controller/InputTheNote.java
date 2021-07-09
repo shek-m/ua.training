@@ -1,6 +1,6 @@
 package registerForm.controller;
 
-import registerForm.model.Note;
+import registerForm.model.entity.Note;
 import registerForm.view.View;
 
 import java.util.Scanner;
