@@ -7,4 +7,5 @@ public interface TextConstants {
     String INPUT_FIRST_NAME = "input.first.name.data";
     String INPUT_LOGIN = "input.login.data";
     String INPUT_ASK_FOR_LOCALE = "input.ask.for.locale.data";
+    String NOT_UNIQUE_LOGIN_EXCEPTION = "input.not.unique.login.data";
 }
