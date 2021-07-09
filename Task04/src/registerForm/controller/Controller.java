@@ -65,7 +65,7 @@ public class Controller {
         try {
             model.addNote(note);
         } catch (NotUniqueLoginException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
             addNote(itn.resetLogin(model.removeLastAndGet()), itn);
         }
     }

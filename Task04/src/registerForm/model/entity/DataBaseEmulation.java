@@ -48,5 +48,7 @@ public class DataBaseEmulation {
     private void addSeveralNotesToStorage() {
         noteTable.add(new Note("Михайло", "endurance2296"));
         noteTable.add(new Note("Владислав", "vladislavandri"));
+        noteTable.add(new Note("Alex", "alexdarkstalker98"));
+        noteTable.add(new Note("Jonas", "jonasbros"));
     }
 }
