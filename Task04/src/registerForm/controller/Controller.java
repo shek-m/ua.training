@@ -10,9 +10,10 @@
 package registerForm.controller;
 
 import registerForm.model.Model;
+import registerForm.model.entity.NotUniqueLoginException;
+import registerForm.model.entity.Note;
 import registerForm.view.TextConstants;
 import registerForm.view.View;
-import registerForm.model.entity.DataBaseEmulation;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -52,8 +53,23 @@ public class Controller {
         Scanner scanner = new Scanner(System.in);
         InputTheNote itn = new InputTheNote(view, scanner);
         view.setDesiredLocale(askUsersLocale(scanner));
-        model.addNote(itn.validateSingleNote());
+        addNote(itn.validateSingleNote(), itn);
     }
+
+    /**
+     * This method recursively calls itself in case of thrown NotUniqueException
+     * @param note-note, input from console or rewritten after exception
+     * @param itn - InputTheNote class instance
+     */
+    private void addNote(Note note, InputTheNote itn) {
+        try {
+            model.addNote(note);
+        } catch (NotUniqueLoginException e) {
+            e.printStackTrace();
+            addNote(itn.resetLogin(model.removeLastAndGet()), itn);
+        }
+    }
+
 
     private Locale askUsersLocale(Scanner scan) {
         int temp = 0;

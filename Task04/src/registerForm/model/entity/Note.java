@@ -5,10 +5,12 @@ package registerForm.model.entity;
  */
 public class Note {
     private String name;
+
     private String nickname;
 
     //Constructors
-    public Note(){}
+    public Note() {
+    }
 
     public Note(String name, String nickname) {
         this.name = name;
@@ -21,5 +23,9 @@ public class Note {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 }

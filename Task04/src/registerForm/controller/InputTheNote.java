@@ -33,4 +33,12 @@ public class InputTheNote {
                 , View.regexBundle.getString(RegexPatterns.REGEX_NICKNAME)));
         return note;
     }
+
+    public Note resetLogin(Note note) {
+        UtilityController uc = new UtilityController(sc, view);
+
+        note.setNickname(uc.getInputAndMatch(INPUT_LOGIN
+                , View.regexBundle.getString(RegexPatterns.REGEX_NICKNAME)));
+        return note;
+    }
 }

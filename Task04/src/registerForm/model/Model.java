@@ -1,6 +1,7 @@
 package registerForm.model;
 
 import registerForm.model.entity.DataBaseEmulation;
+import registerForm.model.entity.NotUniqueLoginException;
 import registerForm.model.entity.Note;
 
 public class Model {
@@ -8,16 +9,13 @@ public class Model {
 
     public Model() {
         this.db = DataBaseEmulation.getInstance();
-        addSeveralNotesToStorage();
     }
 
-    public void addNote(Note note) {
+    public void addNote(Note note) throws NotUniqueLoginException {
         db.add(note);
     }
 
-    //hard-coded Notes for NotUniqueLoginException check
-    private void addSeveralNotesToStorage() {
-        addNote(new Note("Михайло", "endurance2296"));
-        addNote(new Note("Владислав", "vladislavandri"));
+    public Note removeLastAndGet() {
+        return db.removeLastAndGet();
     }
 }
