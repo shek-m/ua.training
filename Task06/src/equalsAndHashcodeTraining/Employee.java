@@ -21,7 +21,7 @@ public class Employee {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof Employee) {
+        if (obj.getClass() == this.getClass()) {
             Employee temp = (Employee) obj;
             return this.age == temp.age && this.name.equals(temp.name)
                     && this.surname.equals(temp.surname);
