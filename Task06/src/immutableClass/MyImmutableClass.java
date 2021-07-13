@@ -5,18 +5,28 @@ import java.util.List;
 
 public final class MyImmutableClass {
     private final int id;
-    private final List<String> list;
+    private final List<Thing> list;
 
-    public MyImmutableClass(int id, List<String> list) {
+    public MyImmutableClass(int id, List<Thing> list) {
         this.id = id;
-        this.list = new ArrayList<>(list);
+
+        List<Thing> copy = new ArrayList<>();
+        for (Thing thing : list) {
+            copy.add(new Thing(thing));
+        }
+        this.list = copy;
     }
 
     public int getId() {
         return id;
     }
 
-    public List<String> getList() {
-        return new ArrayList<>(list);
+    //using copy constructor instead of clone() (by Joshua Bloch)
+    public List<Thing> getList() {
+        List<Thing> listCopy = new ArrayList<>();
+        for (Thing thing : list) {
+            listCopy.add(new Thing(thing));
+        }
+        return listCopy;
     }
 }
