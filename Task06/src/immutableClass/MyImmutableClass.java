@@ -12,7 +12,7 @@ public final class MyImmutableClass {
 
         List<Thing> copy = new ArrayList<>();
         for (Thing thing : list) {
-            copy.add(new Thing(thing));
+            copy.add(thing.copy());
         }
         this.list = copy;
     }
@@ -25,7 +25,7 @@ public final class MyImmutableClass {
     public List<Thing> getList() {
         List<Thing> listCopy = new ArrayList<>();
         for (Thing thing : list) {
-            listCopy.add(new Thing(thing));
+            listCopy.add(thing.copy());
         }
         return listCopy;
     }

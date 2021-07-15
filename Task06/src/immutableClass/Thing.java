@@ -1,6 +1,7 @@
 package immutableClass;
 
-public class Thing {
+
+public class Thing implements Copyable {
     private int age;
     private String name;
 
@@ -9,10 +10,10 @@ public class Thing {
         this.name = name;
     }
 
-    //Copy constructor
-    public Thing(Thing thing) {
-        this.age = thing.age;
-        this.name = thing.name;
+    @Override
+    public Thing copy() {
+        Thing prototype = new Thing(age, name);
+        return prototype;
     }
 
     public int getAge() {
