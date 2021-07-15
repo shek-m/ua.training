@@ -21,7 +21,6 @@ public final class MyImmutableClass {
         return id;
     }
 
-    //using copy constructor instead of clone() (by Joshua Bloch)
     public List<Thing> getList() {
         List<Thing> listCopy = new ArrayList<>();
         for (Thing thing : list) {
