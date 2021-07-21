@@ -10,7 +10,7 @@ public class Main {
 
         bb.forEach(System.out::println);
 
-        bb.remove("Anna");
+        bb.remove("Anna");  //Exception
         bb.remove(0);
 
         bb.forEach(System.out::println);

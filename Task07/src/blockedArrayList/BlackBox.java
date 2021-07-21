@@ -6,48 +6,42 @@ import java.util.function.Predicate;
 
 public class BlackBox<E> extends ArrayList<E> {
     @Override
-    public E remove(int index) {
-        ConsoleHelper.printError(Constants.ERROR_MESSAGE);
-        return null;
+    public E remove(int index) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException(Constants.ERROR_MESSAGE);
     }
 
     @Override
     protected void removeRange(int fromIndex, int toIndex) {
-        ConsoleHelper.printError(Constants.ERROR_MESSAGE);
+        throw new UnsupportedOperationException(Constants.ERROR_MESSAGE);
     }
 
     @Override
     public boolean remove(Object o) {
-        ConsoleHelper.printError(Constants.ERROR_MESSAGE);
-        return false;
+        throw new UnsupportedOperationException(Constants.ERROR_MESSAGE);
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        ConsoleHelper.printError(Constants.ERROR_MESSAGE);
-        return false;
+        throw new UnsupportedOperationException(Constants.ERROR_MESSAGE);
     }
 
     @Override
     public boolean removeIf(Predicate<? super E> filter) {
-        ConsoleHelper.printError(Constants.ERROR_MESSAGE);
-        return false;
+        throw new UnsupportedOperationException(Constants.ERROR_MESSAGE);
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        ConsoleHelper.printError(Constants.ERROR_MESSAGE);
-        return false;
+        throw new UnsupportedOperationException(Constants.ERROR_MESSAGE);
     }
 
     @Override
     public E set(int index, E element) {
-        ConsoleHelper.printError(Constants.ERROR_MESSAGE);
-        return null;
+        throw new UnsupportedOperationException(Constants.ERROR_MESSAGE);
     }
 
     @Override
     public void clear() {
-        ConsoleHelper.printError(Constants.ERROR_MESSAGE);
+        throw new UnsupportedOperationException(Constants.ERROR_MESSAGE);
     }
 }
