@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
 </head>
 <body>
+    <a class="btn btn-primary" href="@{?lang=en}" role="button">Eng</a>
+    <a class="btn btn-primary" href="@{?lang=uk}" role="button">Укр</a>
     <h1>[[#{app.title}]]</h1>
     <div>
         <h2>[[#{app.subtitle}]]</h2>
