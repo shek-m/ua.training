@@ -10,13 +10,13 @@
     <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
 </head>
 <body ng-app="registration_form" ng-controller="AppCtrl">
-<div class="col-md-8 col-md-offset-2">
-    <h1>Registration form's Main</h1>
+<div>
+    <h2>Registration form</h2>
 </div>
 <div class="container" style="margin-top: 60px">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h2 class="page-header">Registration Form Demo</h2>
+        <div class="col-md-5 col-md-offset-5">
+            <h5 class="page-header">Input data below</h5>
             <form style="margin-bottom: 30px" name="form" autocomplete="off" novalidate ng-submit="form.$valid && sendForm(auth)">
                 <div class="form-group">
                     <label for="exampleInputName">First name</label>
@@ -36,7 +36,7 @@
                            required
                            ng-model="auth.login">
                 </div>
-                <button type="submit" class="btn btn-default" style="margin-top:30px" ng-disabled="form.$invalid">
+                <button type="submit" class="btn btn-primary" style="margin-top:30px" ng-disabled="form.$invalid">
                     Submit
                 </button>
             </form>

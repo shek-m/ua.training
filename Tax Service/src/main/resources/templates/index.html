@@ -9,17 +9,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
 </head>
 <body>
-    <div>
-        <a class="btn btn-primary" style="margin-top:30px" href="?lang=en" role="button">Eng</a>
-        <a class="btn btn-primary" style="margin-top:30px" href="?lang=uk" role="button">Укр</a>
-    </div>
+    <div class="container">
+        <div class="row">
+            <div class="align-content-center">
+                <a class="btn btn-primary" href="?lang=en" role="button">Eng</a>
+                <a class="btn btn-primary" href="?lang=uk" role="button">Укр</a>
 
-    <h1>[[#{app.title}]]</h1>
-    <div>
-        <h2>[[#{app.subtitle}]]</h2>
-    </div>
-    <div class="col-md-2 col-md-offset-5">
-        <a class="btn btn-primary" style="margin-top:30px" href="/register" role="button">Register</a>
+                <h1>[[#{app.title}]]</h1>
+                <div>
+                    <h2>[[#{app.subtitle}]]</h2>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" style="margin-top:15px" href="/register" role="button">Register</a>
+                </div>
+
+            </div>
+
+        </div>
     </div>
 
 </body>

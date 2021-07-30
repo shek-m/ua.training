@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RegFormService {
-    public String inputNote(NoteDTO name) {return "";}
+    public String inputNote(NoteDTO name) {return name.toString();}
 }
