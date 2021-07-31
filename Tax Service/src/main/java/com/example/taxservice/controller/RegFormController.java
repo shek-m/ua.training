@@ -1,6 +1,6 @@
 package com.example.taxservice.controller;
 
-import com.example.taxservice.dto.NoteDTO;
+import com.example.taxservice.dto.UserDTO;
 import com.example.taxservice.service.RegFormService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class RegFormController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/reg_form", method = RequestMethod.POST)
-    public void registrationFormController(NoteDTO note) {
+    public void registrationFormController(UserDTO note) {
         log.info("{}", note);
     }
 

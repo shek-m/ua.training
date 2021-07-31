@@ -1,4 +1,4 @@
-package com.example.taxservice.dto;
+package com.example.taxservice.entity;
 
 import lombok.*;
 
@@ -8,10 +8,8 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @ToString
-public class NoteDTO {
-
+public class User {
+    private Long id;
     private String names;
-
     private String login;
-
 }
