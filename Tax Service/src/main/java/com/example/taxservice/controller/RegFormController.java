@@ -21,13 +21,12 @@ public class RegFormController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = "/reg_form", method = RequestMethod.POST)
-    public void registrationFormController(UserDTO note) {
-        log.info("{}", note);
+    public void registrationFormController(UserDTO user) {
+        log.info("{}", user);
     }
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity handleRuntimeException(RuntimeException ex) {
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
-
 }
