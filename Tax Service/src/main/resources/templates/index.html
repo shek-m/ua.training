@@ -21,9 +21,10 @@
                 </div>
                 <div th:text="#{app.user} +  ${' : ' + user.getUsername() + '; '} + #{app.role}  +  ${' : ' + user.getRole()}">
                 </div>
-                <div class="col-md-2">
-                    <a class="btn btn-primary" style="margin-top:15px" href="/register" role="button">Register</a>
-                </div>
+
+                <a class="btn btn-primary" href="/register" role="button">Register</a>
+                <a class="btn btn-primary" href="/logout" role="button">Logout</a>
+
 
             </div>
 
