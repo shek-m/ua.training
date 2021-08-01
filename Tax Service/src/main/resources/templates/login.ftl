@@ -23,16 +23,15 @@
                             <div class="alert alert-danger" role="alert">Invalid username or password!</div>
                         </#if>
 
-                        <form method="post" name="f" action="login">
+                        <form form th:action="@{/login}" th:method="POST">
                             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                             <div class="mb-3">
                                 <label for="username" class="form-label">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp">
-                                <div id="usernameHelp" class="form-text">Input you login here</div>
+                                <input type="text" class="form-control" id="username" name="username">
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
+                                <input type="text" class="form-control" id="password" name="password">
                             </div>
                             <button type="submit" class="btn btn-primary">Sign in</button>
                         </form>
