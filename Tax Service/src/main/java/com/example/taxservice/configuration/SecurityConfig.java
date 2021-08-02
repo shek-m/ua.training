@@ -1,5 +1,6 @@
-package com.example.taxservice.service;
+package com.example.taxservice.configuration;
 
+import com.example.taxservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

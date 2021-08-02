@@ -1,4 +1,4 @@
-package com.example.taxservice.service;
+package com.example.taxservice.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
