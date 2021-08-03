@@ -1,7 +1,10 @@
 package com.example.taxservice.controller;
 
+import com.example.taxservice.entity.User;
 import com.example.taxservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PageController {
-    @Autowired
-    private UserService userService;
 
-    @GetMapping("/")
+    @GetMapping("/index")
     public String viewHomePage(Model model){
-        model.addAttribute("user", userService.getActiveUser());
+        Authentication auth =  SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("role", user.getRole());
         return "index";
     }
     @RequestMapping("/login")
@@ -31,4 +35,7 @@ public class PageController {
 
     @RequestMapping("/register")
     public String registrationPage() { return "reg_form";}
+
+    @GetMapping("/")
+    public String welcomePage() { return "welcome";}
 }

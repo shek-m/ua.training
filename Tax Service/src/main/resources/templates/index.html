@@ -19,7 +19,7 @@
                 <div>
                     <h2>[[#{app.subtitle}]]</h2>
                 </div>
-                <div th:text="#{app.user} +  ${' : ' + user.getUsername() + '; '} + #{app.role}  +  ${' : ' + user.getRole()}">
+                <div th:text="#{app.user} +  ${' : ' + username + '; '} + #{app.role}  +  ${' : ' + role}">
                 </div>
 
                 <a class="btn btn-primary" href="/register" role="button">Register</a>
