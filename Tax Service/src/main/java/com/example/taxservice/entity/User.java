@@ -5,8 +5,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 
 
 @AllArgsConstructor
@@ -22,6 +24,19 @@ public class User implements UserDetails {
     @GeneratedValue (strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
+
+    @Column(name="name", nullable = false)
+    private String name;
+
+    @Column(name = "surname", nullable = false)
+    private String surname;
+
+//    @Column(name = "bitrh", columnDefinition = "DATE")
+//    @Temporal(TemporalType.DATE)
+//    private Date date;
+
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
 
     @Column(name="login", nullable = false, unique = true)
     private String username;
