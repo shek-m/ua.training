@@ -33,8 +33,8 @@ public class PageController {
     }
 
 
-    @RequestMapping("/register")
-    public String registrationPage() { return "reg_form";}
+    @GetMapping("/registration")
+    public String registrationPage() { return "registration";}
 
     @GetMapping("/")
     public String welcomePage() { return "welcome";}
