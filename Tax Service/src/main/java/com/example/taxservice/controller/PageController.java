@@ -1,5 +1,6 @@
 package com.example.taxservice.controller;
 
+import com.example.taxservice.dto.UserDTO;
 import com.example.taxservice.entity.User;
 import com.example.taxservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
 
 @Controller
 public class PageController {
@@ -34,8 +36,17 @@ public class PageController {
 
 
     @GetMapping("/registration")
-    public String registrationPage() { return "registration";}
+    public String registrationPage(WebRequest request, Model model) {
+        UserDTO userDto = new UserDTO();
+        model.addAttribute("user", userDto);
+        return "registration";
+    }
 
     @GetMapping("/")
     public String welcomePage() { return "welcome";}
+
+//    @GetMapping("successsegister")
+//    public String successfulRegistration() {
+//        return "successRegister";
+//    }
 }

@@ -31,9 +31,8 @@ public class User implements UserDetails {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-//    @Column(name = "bitrh", columnDefinition = "DATE")
-//    @Temporal(TemporalType.DATE)
-//    private Date date;
+    @Column(name = "bitrh", columnDefinition = "DATE")
+    private LocalDate date;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
