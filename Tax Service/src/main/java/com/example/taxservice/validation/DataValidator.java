@@ -15,12 +15,4 @@ public class DataValidator {
             LocalDate userBirthDate = LocalDate.parse(date, formatter);
             return userBirthDate;
         }
-
-    public LegalEntityType validateLegalEntityType(String type) throws IllegalArgumentException {
-        return LegalEntityType.valueOf(type);
-    }
-
-    public Currency validateCurrency(String curr) throws IllegalArgumentException {
-        return Currency.valueOf(curr);
-    }
 }

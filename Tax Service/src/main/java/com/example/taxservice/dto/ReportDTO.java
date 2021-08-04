@@ -1,5 +1,7 @@
 package com.example.taxservice.dto;
 
+import com.example.taxservice.entity.Currency;
+import com.example.taxservice.entity.LegalEntityType;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
@@ -29,19 +31,16 @@ public class ReportDTO {
     private String date;
 
     @NotNull
-    @NotEmpty
-    private String legalEntityType;
+    private LegalEntityType legalEntityType;
 
     @NotNull
-    @NotEmpty
-    private String currency;
+    private Currency currency;
 
     @NotNull
     private Long currentAssets;
 
     @NotNull
     private Long nonCurrentAssets;
-
 
     @NotNull
     private Long currentLiabilities;

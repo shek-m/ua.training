@@ -12,7 +12,10 @@
     <div class="container">
         <div class="row">
             <div class="d-flex justify-content-center">
-                <div><h1>Add new report</h1></div>
+                <h1>Add new report</h1>
+            </div>
+
+            <div class="d-flex justify-content-center">
                 <div class="card" style="margin-top: 45px">
                     <h4 class="card-header">Input you data</h4>
                     <div class="card-body">
@@ -39,17 +42,25 @@
                                         aria-describedby="dataHelp" placeholder="20-01-2020">
                                     <div id="dataHelp" class="form-text">Input the date using following format: dd-MM-yyyy</div>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="legal-entity-type" class="form-label">Legal entity type</label>
-                                    <input type="text" class="form-control" required id="legal-entity-type"
-                                        aria-describedby="entityHelp" th:field="${report.legalEntityType}">
-                                    <div id="entityHelp" class="form-text"><em>Choose one of following legal entity types:</em> DAT, FOP, TOV, PP, VAT, ZAT, KT</div>
+                                <div class="form-group mb-3">
+                                    <label for="type">Choose legal entity type</label>
+                                    <select class="form-control selectpicker" th:field="${report.legalEntityType}" id="type">
+                                        <option value="">Nothing selected</option>
+                                        <option th:each="type : ${T(com.example.taxservice.entity.LegalEntityType).values()}"
+                                                th:value="${type}"
+                                                th:text="${type}">type
+                                        </option>
+                                    </select>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="currency" class="form-label">Currency</label>
-                                    <input type="text" class="form-control" required id="currency"
-                                        aria-describedby="curHelp" th:field="${report.currency}">
-                                    <div id="curHelp" class="form-text"><em>Choose one of available currencies:</em> UAN, USD, EUR, GBP</div>
+                                <div class="form-group mb-3">
+                                    <label for="curr">Choose currency</label>
+                                    <select class="form-control selectpicker" th:field="${report.currency}" id="curr">
+                                        <option value="">Nothing selected</option>
+                                        <option th:each="type : ${T(com.example.taxservice.entity.Currency).values()}"
+                                                th:value="${type}"
+                                                th:text="${type}">type
+                                        </option>
+                                    </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="cur-assets" class="form-label">Current assets</label>
@@ -82,4 +93,7 @@
 <!--</div>-->
 
 </body>
+<script src="http://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>

@@ -37,13 +37,10 @@ public class UserController {
 
     @GetMapping("/user/reports/{id}")
     public String getReportList(@PathVariable Long id,  Model model) {
-       // id = userService.getUserID();
         Long finalId = userService.getUserID();
 
         List<Report> list = reportService.listAllReports().stream().filter(r -> r.getUser_id().equals(finalId)).collect(Collectors.toList());
         model.addAttribute("reports", list);
-      //  model.addAttribute("userID", id);
-
         return "user/reports";
     }
 

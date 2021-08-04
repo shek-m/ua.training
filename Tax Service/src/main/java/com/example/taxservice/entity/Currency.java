@@ -1,5 +1,5 @@
 package com.example.taxservice.entity;
 
 public enum Currency {
-    UAN, USD, EUR, GBP
+    UAH, USD, EUR, GBP
 }
