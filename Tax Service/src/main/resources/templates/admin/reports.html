@@ -1,10 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Login</title>
 </head>
 <body>
-
+<div class="container-fluid text-center">
+    <div><h1>List of reports</h1></div>
+    <div>
+<!--        <h4><a th:href="@{/user/new-report}">Add new report</a></h4>-->
+        <div>
+            <table class="table table-bordered">
+                <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>User ID</th>
+                    <th>Company Name</th>
+                    <th>Company ID</th>
+                    <th>City</th>
+                    <th>Date</th>
+                    <th>Legal Entity Type</th>
+                    <th>Currency</th>
+                    <th>Current Assets</th>
+                    <th>Non current Assets</th>
+                    <th>Total assets </th>
+                    <th>Current liabilities </th>
+                    <th>Non-Current liabilities </th>
+                    <th>Total liabilities </th>
+                    <th>Equality </th>
+                    <th>Status</th>
+                    <th>Comment</th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="report : ${reports}">
+                    <tr>
+                        <td>[[${report.id}]]</td>
+                        <td>[[${report.user_id}]]</td>
+                        <td>[[${report.companyName}]]</td>
+                        <td>[[${report.companyId}]]</td>
+                        <td>[[${report.city}]]</td>
+                        <td>[[${report.date}]]</td>
+                        <td>[[${report.legalEntityType}]]</td>
+                        <td>[[${report.currency}]]</td>
+                        <td>[[${report.currentAssets}]]</td>
+                        <td>[[${report.nonCurrentAssets}]]</td>
+                        <td>[[${report.totalAssets}]]</td>
+                        <td>[[${report.currentLiabilities}]]</td>
+                        <td>[[${report.nonCurrentLiabilities}]]</td>
+                        <td>[[${report.totalLiabilities}]]</td>
+                        <td>[[${report.equality}]]</td>
+                        <td>[[${report.status}]]</td>
+                        <td>[[${report.comment}]]</td>
+                        <!--                            <td><a class="" </td>-->
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -7,7 +7,11 @@
     <title>User | Home</title>
 </head>
 <body>
-    <h1>User main</h1>
-    <a class="btn-outline-success" role="button" th:href="@{'/user/reports/' + ${userID}}">Reports</a>
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h1>User main</h1>
+        <a class="btn-outline-success" role="button" th:href="@{'/user/reports/' + ${userID}}">Reports</a>
+    </div>
+</div>
 </body>
 </html>
