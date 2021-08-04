@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Add new report</title>
+</head>
+<body>
+<!--<div class="container-fluid text-center">-->
+    <h1>Add new report</h1>
+    <div class="container">
+        <div class="row">
+
+            <div class="d-flex justify-content-center">
+                <div class="card" style="margin-top: 45px">
+                    <h4 class="card-header">Input you data</h4>
+                    <div class="card-body">
+                        <p class="card-text">
+                        <div th:if="${message != null}" class="alert alert-danger" role="alert">
+                            <div th:text="${message}"></div>
+                        </div>
+                            <form th:action="@{/user/new-report}" method="post">
+            <div class="mb-3">
+                <label for="company_name" class="form-label">Company name</label>
+                <input type="text" class="form-control" required id="company_name" th:field="${report.companyName}">
+            </div>
+            <div class="mb-3">
+                <label for="company_id" class="form-label">EDRPOU</label>
+                <input type="number" class="form-control" required id="company_id" th:field="${report.companyId}">
+            </div>
+            <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" required id="city" th:field="${report.city}">
+            </div>
+            <div class="mb-3">
+                <label for="birth" class="form-label">Report date</label>
+                <input type="text" class="form-control" required id="birth" th:field="${report.date}"
+                   aria-describedby="dataHelp" placeholder="20-01-2020">
+                <div id="dataHelp" class="form-text">Input the date using following format: dd-MM-yyyy</div>
+            </div>
+            <div class="mb-3">
+                <label for="legal-entity-type" class="form-label">Legal entity type</label>
+                <input type="text" class="form-control" required id="legal-entity-type"
+                   aria-describedby="entityHelp" th:field="${report.legalEntityType}">
+                <div id="entityHelp" class="form-text"><em>Choose one of following legal entity types:</em> DAT, FOP, TOV, PP, VAT, ZAT, KT</div>
+            </div>
+            <div class="mb-3">
+                <label for="currency" class="form-label">Currency</label>
+                <input type="text" class="form-control" required id="currency"
+                   aria-describedby="curHelp" th:field="${report.currency}">
+                <div id="curHelp" class="form-text"><em>Choose one of available currencies:</em> UAN, USD, EUR, GBP</div>
+            </div>
+            <div class="mb-3">
+                <label for="cur-assets" class="form-label">Current assets</label>
+                <input type="number" class="form-control" required id="cur-assets" th:field="${report.currentAssets}">
+            </div>
+            <div class="mb-3">
+                <label for="non-cur-assets" class="form-label">Current assets</label>
+                <input type="number" class="form-control" required id="non-cur-assets" th:field="${report.nonCurrentAssets}">
+            </div>
+            <div class="mb-3">
+                <label for="cur-liab" class="form-label">Current assets</label>
+                <input type="number" class="form-control" required id="cur-liab" th:field="${report.currentLiabilities}">
+            </div>
+            <div class="mb-3">
+                <label for="non-cur-liab" class="form-label">Current assets</label>
+                <input type="number" class="form-control" required id="non-cur-liab" th:field="${report.nonCurrentLiabilities}">
+            </div>
+            <div class="mb-3">
+                <label for="equality" class="form-label">Current assets</label>
+                <input type="number" class="form-control" required id="equality" th:field="${report.equality}">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--</div>-->
+
+</body>
+</html>

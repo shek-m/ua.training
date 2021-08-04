@@ -10,8 +10,10 @@
     <div class="container-fluid text-center">
         <div><h1>List of reports</h1></div>
         <div>
+            <h4><a th:href="@{/user/new-report}">Add new report</a></h4>
+        <div>
             <table class="table table-bordered">
-                <thead class="table-dark">
+                <thead class="table-light">
                     <tr>
                         <th>ID</th>
                         <th>User ID</th>
@@ -52,7 +54,7 @@
                             <td>[[${report.equality}]]</td>
                             <td>[[${report.status}]]</td>
                             <td>[[${report.comment}]]</td>
-
+<!--                            <td><a class="" </td>-->
                         </tr>
                     </th:block>
                 </tbody>

@@ -4,11 +4,10 @@ import com.example.taxservice.dto.UserDTO;
 import com.example.taxservice.entity.Role;
 import com.example.taxservice.entity.User;
 import com.example.taxservice.repository.UserRepository;
-import com.example.taxservice.validation.RegistrationFormDataValidator;
+import com.example.taxservice.validation.DataValidator;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,7 +38,7 @@ public class UserService implements UserDetailsService {
             throw new UserAlreadyExistException("There is an account with current email address or username.");
         }
 
-        RegistrationFormDataValidator validator = new RegistrationFormDataValidator();
+        DataValidator validator = new DataValidator();
 
         return userRepository.save(User.builder()
                                 .name(userDto.getName())
@@ -47,7 +46,7 @@ public class UserService implements UserDetailsService {
                                 .email(userDto.getEmail())
                                 .role(Role.USER)
                                 .username(userDto.getUsername())
-                                .date(validator.validateDate(userDto))
+                                .date(validator.validateDate(userDto.getDate()))
                                 .password(new BCryptPasswordEncoder().encode(userDto.getPassword()))
                                 .build());
     }

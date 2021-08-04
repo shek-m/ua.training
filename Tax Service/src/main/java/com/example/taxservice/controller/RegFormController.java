@@ -26,15 +26,7 @@ public class RegFormController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/registration")
-    public ModelAndView addUser(@ModelAttribute("user") @Valid UserDTO userDto, HttpServletRequest request, Errors errors) {
-//        if (userRepository.findByUsername(user.getUsername()).isPresent() || userRepository.findByEmail(user.getEmail()).isPresent()){
-//            model.addAttribute("user_exists", "User exists!");
-//            return "registration";
-//        }
-//        user.setRole(Role.USER);
-//        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-//
-//        userRepository.save(user);
+    public ModelAndView addUser(@ModelAttribute("user") UserDTO userDto, HttpServletRequest request, Errors errors) {
 
         ModelAndView mov = new ModelAndView("registration");
 
