@@ -6,6 +6,7 @@ import com.example.taxservice.entity.Report;
 import com.example.taxservice.entity.ReportStatus;
 import com.example.taxservice.repository.ReportRepository;
 import com.example.taxservice.validation.DataValidator;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,10 +29,14 @@ public class ReportService {
         return (List<Report>) reportRepository.findAll();
     }
 
+    public List<Report> listUserReports(@NonNull Long id) {
+        return reportRepository.findByUserId(id);
+    }
+
     public Report addNewReport(ReportDTO reportDTO) throws IllegalArgumentException, DateTimeParseException {
         DataValidator validator = new DataValidator();
         Report report = Report.builder()
-                                .user_id(userService.getUserID())
+                                .userId(userService.getUserID())
                                 .companyName(reportDTO.getCompanyName())
                                 .companyId(reportDTO.getCompanyId())
                                 .city(reportDTO.getCity())
@@ -47,6 +52,7 @@ public class ReportService {
                                 .equality(reportDTO.getEquality())
                                 .status(ReportStatus.PROCESSING)
                                 .build();
+
         return reportRepository.save(report);
     }
 }

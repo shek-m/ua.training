@@ -1,15 +1,11 @@
 package com.example.taxservice.controller;
 
 import com.example.taxservice.dto.ReportDTO;
-import com.example.taxservice.dto.UserDTO;
 import com.example.taxservice.entity.Report;
-import com.example.taxservice.entity.User;
 import com.example.taxservice.service.ReportService;
-import com.example.taxservice.service.UserAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,7 +30,7 @@ public class ReportController {
 
         try{
             Report addedReport = reportService.addNewReport(reportDto);
-            userID = addedReport.getUser_id();
+            userID = addedReport.getUserId();
         } catch(IllegalArgumentException ex){
             mov.addObject("message", "You input incorrect currency or legal entity type. Try again.");
             return mov;

@@ -7,11 +7,9 @@ import com.example.taxservice.service.ReportService;
 import com.example.taxservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,7 +37,8 @@ public class UserController {
     public String getReportList(@PathVariable Long id,  Model model) {
         Long finalId = userService.getUserID();
 
-        List<Report> list = reportService.listAllReports().stream().filter(r -> r.getUser_id().equals(finalId)).collect(Collectors.toList());
+ //       List<Report> list = reportService.listAllReports().stream().filter(r -> r.getUserId().equals(finalId)).collect(Collectors.toList());
+        List<Report> list = reportService.listUserReports(finalId);
         model.addAttribute("reports", list);
         return "user/reports";
     }

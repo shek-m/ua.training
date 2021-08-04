@@ -21,7 +21,7 @@ public class Report {
     private Long id;
 
     @Column(name = "user_id", nullable = false)
-    private Long user_id;
+    private Long userId;
 
     @Column(name = "company_name", nullable = false)
     private String companyName;
