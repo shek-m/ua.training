@@ -13,10 +13,12 @@
 <!--        <h4><a th:href="@{/user/new-report}">Add new report</a></h4>-->
         <div>
             <table class="table table-bordered">
+                <div th:if="${message != null}" class="alert alert-info" role="alert">
+                    <div th:text="${message}"></div>
+                </div>
                 <thead class="table-light">
                 <tr>
                     <th>ID</th>
-                    <th>User ID</th>
                     <th>Company Name</th>
                     <th>Company ID</th>
                     <th>City</th>
@@ -38,7 +40,6 @@
                 <th:block th:each="report : ${reports}">
                     <tr>
                         <td>[[${report.id}]]</td>
-                        <td>[[${report.userId}]]</td>
                         <td>[[${report.companyName}]]</td>
                         <td>[[${report.companyId}]]</td>
                         <td>[[${report.city}]]</td>
@@ -55,6 +56,9 @@
                         <td>[[${report.status}]]</td>
                         <td>[[${report.comment}]]</td>
                         <!--                            <td><a class="" </td>-->
+                        <td>
+                            <a class="btn btn-outline-dark" style=" margin-right: 3px" th:href="@{/admin/reports/{id}(id=${report.id})}">Review</a>
+                        </td>
                     </tr>
                 </th:block>
                 </tbody>

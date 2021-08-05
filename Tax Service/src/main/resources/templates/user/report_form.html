@@ -83,7 +83,15 @@
                                     <label for="equality" class="form-label">Equality</label>
                                     <input type="number" class="form-control" required id="equality" th:field="${report.equality}">
                                 </div>
-                                <div class="text-center">
+                                <span th:if="${report.comment != null}">
+                                    <div class="mb-3">
+                                        <label for="comment" class="form-label">Comment</label>
+                                        <p class="font-weight-bold">
+                                            <input type="text" style="color:darkred" class="form-control" required id="comment" th:field="${report.comment}" readonly>
+                                        </p>
+                                    </div>
+                                </span>
+                                <div>
                                     <button type="submit" class="btn btn-primary m-2">Submit</button>
                                     <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
                                 </div>

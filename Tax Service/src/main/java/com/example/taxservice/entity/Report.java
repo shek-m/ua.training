@@ -73,4 +73,7 @@ public class Report {
 
     @Column
     private String comment;
+
+    @Column
+    private Boolean editable;
 }

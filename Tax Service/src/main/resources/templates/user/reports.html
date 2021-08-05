@@ -57,10 +57,17 @@
                             <td>[[${report.equality}]]</td>
                             <td>[[${report.status}]]</td>
 <!--                            <td>[[${report.comment}]]</td>-->
-                            <td>
-                                <a style="margin-right: 3px" th:href="@{/user/reports/{userID}/edit/{id}(userID=${report.user.id},id=${report.id})}">Edit</a>
-                                <a style="margin-right: 3px" href="">View comment</a>
-                            </td>
+<!--                            <td>-->
+<!--                            <td>-->
+<!--                                <span th:if="${teacher.gender == 'F'}">Female</span>-->
+<!--                                <span th:unless="${teacher.gender == 'F'}">Male</span>-->
+<!--                            </td>-->
+                                <span th:if="${report.editable}">
+                                    <td>
+                                        <a class="btn btn-outline-secondary" style="margin-right: 3px" th:href="@{/user/reports/{userID}/edit/{id}(userID=${report.user.id},id=${report.id})}">Edit</a>
+                                    </td>
+                                </span>
+<!--                            </td>-->
                         </tr>
                     </th:block>
                 </tbody>

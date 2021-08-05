@@ -31,10 +31,10 @@ public class ReportController {
         ModelAndView mov = new ModelAndView("user/report_form");
         Long userID;
 
-        try{
+        try {
             Report addedReport = reportService.addNewReport(reportDto);
             userID = addedReport.getUser().getId();
-        } catch(DateTimeParseException ex){
+        } catch (DateTimeParseException ex) {
             mov.addObject("message", "Input date format is not appropriate.");
             return mov;
         }
@@ -46,15 +46,18 @@ public class ReportController {
         return new ModelAndView("successReportAdded", "userID", userID);
     }
 
-//    @ResponseStatus(HttpStatus.CREATED)
-//    @PostMapping("/user/edited")
-//    public void addOrEditReport(@Valid ReportDTO reportDto) {
-//        try{
-//            Report addedReport = reportService.addNewReport(reportDto);
-//            userID = addedReport.getUser().getId();
-//        } catch(DateTimeParseException ex){
-//            mov.addObject("message", "Input date format is not appropriate.");
-//            return mov;
-//        }
-//    }
+    @PostMapping("/admin/checked")
+    public ModelAndView reviewReport(@ModelAttribute("report") @Valid Report report) {
+        ModelAndView modelAndView = new ModelAndView("admin/reports");
+        try {
+            Report reviewedReport = reportService.reviewReportByAdmin(report);
+        } catch (DateTimeParseException ex) {
+            modelAndView.addObject("message", "Input date format is not appropriate.");
+            return new ModelAndView("admin/report_review_form");
+        }
+        log.info("{}", report);
+        modelAndView.addObject("message", "Report was reviewed");
+        modelAndView.addObject("reports", reportService.listAllReports());
+        return modelAndView;
+    }
 }

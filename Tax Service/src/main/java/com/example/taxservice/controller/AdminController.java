@@ -1,18 +1,19 @@
 package com.example.taxservice.controller;
 
 import com.example.taxservice.entity.Report;
+import com.example.taxservice.service.ReportNotFoundException;
 import com.example.taxservice.service.ReportService;
 import com.example.taxservice.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Slf4j
 @Controller
 public class AdminController {
     private ReportService reportService;
@@ -34,5 +35,19 @@ public class AdminController {
         List<Report> list = reportService.listAllReports();
         model.addAttribute("reports", list);
         return "admin/reports";
+    }
+
+    @GetMapping("/admin/reports/{id}")
+    public String reviewReport(@PathVariable Long id, Model model) {
+        Report report = null;
+        try {
+            report = reportService.getById(id);
+        } catch (ReportNotFoundException e) {
+            log.error(e.getMessage());
+            return "admin/reports";
+        }
+        model.addAttribute("report", report);
+
+        return "admin/report_review_form";
     }
 }

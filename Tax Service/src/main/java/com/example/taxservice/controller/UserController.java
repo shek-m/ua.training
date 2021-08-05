@@ -40,6 +40,7 @@ public class UserController {
     public String getReportList(@PathVariable Long id,  Model model) {
         List<Report> list = reportService.listUserReports(userService.getUser().getId());
         model.addAttribute("reports", list);
+    //    model.addAttribute("userID", userService.getUser().getId());
         return "user/reports";
     }
 
@@ -57,6 +58,7 @@ public class UserController {
         try {
             Report report = reportService.getById(id);
             model.addAttribute("report", report);
+            model.addAttribute("userID", userService.getUser().getId());
             model.addAttribute("pageTitle", "Edit report №" + id);
             return "user/report_form";
 

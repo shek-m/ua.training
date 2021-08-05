@@ -21,6 +21,10 @@ public class ReportDTO {
 
     private Long id;
 
+    private String comment;
+
+    private boolean editable;
+
     @NotNull
     private Integer companyId;
 

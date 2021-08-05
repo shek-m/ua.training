@@ -34,28 +34,34 @@ public class ReportService {
 
     public Report getById(@NonNull Long id) throws ReportNotFoundException {
         return reportRepository.findById(id).orElseThrow(() ->
-            new ReportNotFoundException("Report with current ID does't exist"));}
+            new ReportNotFoundException("Report with current ID doesn't exist"));}
 
     public Report addNewReport(ReportDTO reportDTO) throws IllegalArgumentException, DateTimeParseException {
         DataValidator validator = new DataValidator();
         Report report = Report.builder()
-                                .user(userService.getUser())
-                                .id(reportDTO.getId())
-                                .companyName(reportDTO.getCompanyName())
-                                .companyId(reportDTO.getCompanyId())
-                                .city(reportDTO.getCity())
-                                .date(validator.validateDate(reportDTO.getDate()))
-                                .legalEntityType(reportDTO.getLegalEntityType())
-                                .currency(reportDTO.getCurrency())
-                                .currentAssets(reportDTO.getCurrentAssets())
-                                .nonCurrentAssets(reportDTO.getNonCurrentAssets())
-                                .totalAssets((reportDTO.getCurrentAssets()+ reportDTO.getNonCurrentAssets()))
-                                .currentLiabilities(reportDTO.getCurrentLiabilities())
-                                .nonCurrentLiabilities(reportDTO.getNonCurrentLiabilities())
-                                .totalLiabilities((reportDTO.getCurrentLiabilities()+ reportDTO.getNonCurrentLiabilities()))
-                                .equality(reportDTO.getEquality())
-                                .status(ReportStatus.PROCESSING)
-                                .build();
+                .user(userService.getUser())
+                .id(reportDTO.getId())
+                .companyName(reportDTO.getCompanyName())
+                .companyId(reportDTO.getCompanyId())
+                .city(reportDTO.getCity())
+                .date(validator.validateDate(reportDTO.getDate()))
+                .legalEntityType(reportDTO.getLegalEntityType())
+                .currency(reportDTO.getCurrency())
+                .currentAssets(reportDTO.getCurrentAssets())
+                .nonCurrentAssets(reportDTO.getNonCurrentAssets())
+                .totalAssets((reportDTO.getCurrentAssets() + reportDTO.getNonCurrentAssets()))
+                .currentLiabilities(reportDTO.getCurrentLiabilities())
+                .nonCurrentLiabilities(reportDTO.getNonCurrentLiabilities())
+                .totalLiabilities((reportDTO.getCurrentLiabilities() + reportDTO.getNonCurrentLiabilities()))
+                .equality(reportDTO.getEquality())
+                .status(ReportStatus.PROCESSING)
+                .comment(reportDTO.getComment())
+                .editable(false)
+                .build();
+        return reportRepository.save(report);
+    }
+
+    public Report reviewReportByAdmin(Report report) throws DateTimeParseException {
         return reportRepository.save(report);
     }
 }
