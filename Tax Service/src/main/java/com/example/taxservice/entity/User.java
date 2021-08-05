@@ -1,5 +1,6 @@
 package com.example.taxservice.entity;
 
+import com.example.taxservice.entity.enums.Role;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

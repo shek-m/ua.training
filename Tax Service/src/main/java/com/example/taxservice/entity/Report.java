@@ -1,6 +1,9 @@
 package com.example.taxservice.entity;
 
 
+import com.example.taxservice.entity.enums.Currency;
+import com.example.taxservice.entity.enums.LegalEntityType;
+import com.example.taxservice.entity.enums.ReportStatus;
 import lombok.*;
 
 import javax.persistence.*;

@@ -1,6 +1,5 @@
 package com.example.taxservice.configuration;
 
-import com.example.taxservice.entity.Role;
 import com.example.taxservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

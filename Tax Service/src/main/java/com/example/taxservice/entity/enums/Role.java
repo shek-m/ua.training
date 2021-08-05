@@ -1,4 +1,4 @@
-package com.example.taxservice.entity;
+package com.example.taxservice.entity.enums;
 
 import org.springframework.security.core.GrantedAuthority;
 

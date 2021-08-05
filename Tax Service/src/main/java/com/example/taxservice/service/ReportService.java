@@ -2,7 +2,7 @@ package com.example.taxservice.service;
 
 import com.example.taxservice.dto.ReportDTO;
 import com.example.taxservice.entity.Report;
-import com.example.taxservice.entity.ReportStatus;
+import com.example.taxservice.entity.enums.ReportStatus;
 import com.example.taxservice.repository.ReportRepository;
 import com.example.taxservice.validation.DataValidator;
 import lombok.NonNull;
