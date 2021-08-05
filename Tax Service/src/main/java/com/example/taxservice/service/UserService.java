@@ -58,8 +58,8 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username).isPresent();
     }
 
-    public Long getUserID() {
+    public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return ((User)authentication.getPrincipal()).getId();
+        return (User)authentication.getPrincipal();
     }
 }

@@ -17,32 +17,30 @@ import java.util.Collections;
 @Data
 
 @Entity
-@Table(name = "user")
 public class User implements UserDetails {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name="name", nullable = false)
+    @Column(nullable = false)
     private String name;
 
-    @Column(name = "surname", nullable = false)
+    @Column(nullable = false)
     private String surname;
 
-    @Column(name = "bitrh", columnDefinition = "DATE")
+    @Column(columnDefinition = "DATE")
     private LocalDate date;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name="login", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(name="password", nullable = false)
+    @Column(nullable = false)
     private String password;
 
-    @Column(name="role")
+    @Column
     @Enumerated(EnumType.STRING)
     private Role role;
 

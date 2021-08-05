@@ -30,7 +30,7 @@ public class ReportController {
 
         try{
             Report addedReport = reportService.addNewReport(reportDto);
-            userID = addedReport.getUserId();
+            userID = addedReport.getUser().getId();
         } catch(IllegalArgumentException ex){
             mov.addObject("message", "You input incorrect currency or legal entity type. Try again.");
             return mov;

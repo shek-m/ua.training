@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class UserController {
@@ -27,7 +26,7 @@ public class UserController {
 
     @GetMapping("/user/home")
     public String userHomePage(Model model){
-        Long id = userService.getUserID();
+        Long id = userService.getUser().getId();
         model.addAttribute("userID", id);
 
         return "user/userMain";
@@ -35,10 +34,7 @@ public class UserController {
 
     @GetMapping("/user/reports/{id}")
     public String getReportList(@PathVariable Long id,  Model model) {
-        Long finalId = userService.getUserID();
-
- //       List<Report> list = reportService.listAllReports().stream().filter(r -> r.getUserId().equals(finalId)).collect(Collectors.toList());
-        List<Report> list = reportService.listUserReports(finalId);
+        List<Report> list = reportService.listUserReports(userService.getUser().getId());
         model.addAttribute("reports", list);
         return "user/reports";
     }
