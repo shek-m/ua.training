@@ -1,7 +1,7 @@
 package com.example.taxservice.dto;
 
-import com.example.taxservice.entity.Currency;
-import com.example.taxservice.entity.LegalEntityType;
+import com.example.taxservice.entity.enums.Currency;
+import com.example.taxservice.entity.enums.LegalEntityType;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;

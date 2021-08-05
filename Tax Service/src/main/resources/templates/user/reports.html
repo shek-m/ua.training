@@ -16,7 +16,6 @@
                 <thead class="table-light">
                     <tr>
                         <th>ID</th>
-                        <th>User ID</th>
                         <th>Company Name</th>
                         <th>Company ID</th>
                         <th>City</th>
@@ -38,7 +37,6 @@
                     <th:block th:each="report : ${reports}">
                         <tr>
                             <td>[[${report.id}]]</td>
-                            <td>[[${report.userId}]]</td>
                             <td>[[${report.companyName}]]</td>
                             <td>[[${report.companyId}]]</td>
                             <td>[[${report.city}]]</td>
@@ -54,7 +52,6 @@
                             <td>[[${report.equality}]]</td>
                             <td>[[${report.status}]]</td>
                             <td>[[${report.comment}]]</td>
-<!--                            <td><a class="" </td>-->
                         </tr>
                     </th:block>
                 </tbody>

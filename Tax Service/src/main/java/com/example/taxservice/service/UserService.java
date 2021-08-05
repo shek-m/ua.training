@@ -1,7 +1,7 @@
 package com.example.taxservice.service;
 
 import com.example.taxservice.dto.UserDTO;
-import com.example.taxservice.entity.Role;
+import com.example.taxservice.entity.enums.Role;
 import com.example.taxservice.entity.User;
 import com.example.taxservice.repository.UserRepository;
 import com.example.taxservice.validation.DataValidator;
@@ -58,8 +58,8 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username).isPresent();
     }
 
-    public Long getUserID() {
+    public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return ((User)authentication.getPrincipal()).getId();
+        return (User)authentication.getPrincipal();
     }
 }

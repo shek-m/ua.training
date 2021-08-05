@@ -1,9 +1,8 @@
 package com.example.taxservice.service;
 
 import com.example.taxservice.dto.ReportDTO;
-import com.example.taxservice.entity.Currency;
 import com.example.taxservice.entity.Report;
-import com.example.taxservice.entity.ReportStatus;
+import com.example.taxservice.entity.enums.ReportStatus;
 import com.example.taxservice.repository.ReportRepository;
 import com.example.taxservice.validation.DataValidator;
 import lombok.NonNull;
@@ -36,7 +35,7 @@ public class ReportService {
     public Report addNewReport(ReportDTO reportDTO) throws IllegalArgumentException, DateTimeParseException {
         DataValidator validator = new DataValidator();
         Report report = Report.builder()
-                                .userId(userService.getUserID())
+                                .user(userService.getUser())
                                 .companyName(reportDTO.getCompanyName())
                                 .companyId(reportDTO.getCompanyId())
                                 .city(reportDTO.getCity())

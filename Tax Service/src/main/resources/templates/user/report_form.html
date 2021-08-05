@@ -46,7 +46,7 @@
                                     <label for="type">Choose legal entity type</label>
                                     <select class="form-control selectpicker" th:field="${report.legalEntityType}" id="type">
                                         <option value="">Nothing selected</option>
-                                        <option th:each="type : ${T(com.example.taxservice.entity.LegalEntityType).values()}"
+                                        <option th:each="type : ${T(com.example.taxservice.entity.enums.LegalEntityType).values()}"
                                                 th:value="${type}"
                                                 th:text="${type}">type
                                         </option>
@@ -56,7 +56,7 @@
                                     <label for="curr">Choose currency</label>
                                     <select class="form-control selectpicker" th:field="${report.currency}" id="curr">
                                         <option value="">Nothing selected</option>
-                                        <option th:each="type : ${T(com.example.taxservice.entity.Currency).values()}"
+                                        <option th:each="type : ${T(com.example.taxservice.entity.enums.Currency).values()}"
                                                 th:value="${type}"
                                                 th:text="${type}">type
                                         </option>

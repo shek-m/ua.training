@@ -26,7 +26,7 @@ public class UserController {
 
     @GetMapping("/user/home")
     public String userHomePage(Model model){
-        Long id = userService.getUserID();
+        Long id = userService.getUser().getId();
         model.addAttribute("userID", id);
 
         return "user/userMain";
@@ -34,7 +34,7 @@ public class UserController {
 
     @GetMapping("/user/reports/{id}")
     public String getReportList(@PathVariable Long id,  Model model) {
-        List<Report> list = reportService.listUserReports(userService.getUserID());
+        List<Report> list = reportService.listUserReports(userService.getUser().getId());
         model.addAttribute("reports", list);
         return "user/reports";
     }

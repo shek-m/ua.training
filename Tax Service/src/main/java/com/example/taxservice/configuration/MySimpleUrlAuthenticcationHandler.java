@@ -1,6 +1,6 @@
 package com.example.taxservice.configuration;
 
-import com.example.taxservice.entity.Role;
+import com.example.taxservice.entity.enums.Role;
 import com.example.taxservice.entity.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;

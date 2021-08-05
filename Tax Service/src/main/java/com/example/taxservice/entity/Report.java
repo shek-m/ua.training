@@ -1,6 +1,9 @@
 package com.example.taxservice.entity;
 
 
+import com.example.taxservice.entity.enums.Currency;
+import com.example.taxservice.entity.enums.LegalEntityType;
+import com.example.taxservice.entity.enums.ReportStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,61 +16,61 @@ import java.time.LocalDate;
 @Data
 
 @Entity
-@Table(name = "report")
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+    @Column(nullable = false)
     private Long id;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
-    @Column(name = "company_name", nullable = false)
+    @Column(nullable = false)
     private String companyName;
 
-    @Column(name = "company_id", nullable = false)
+    @Column(nullable = false)
     private Integer companyId;
 
-    @Column(name = "city", nullable = false)
+    @Column(nullable = false)
     private String city;
 
-    @Column(name = "date", nullable = false, columnDefinition = "DATE")
+    @Column(nullable = false, columnDefinition = "DATE")
     private LocalDate date;
 
-    @Column(name = "legal_entity_type", nullable = false)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private LegalEntityType legalEntityType;
 
-    @Column(name = "currency", nullable = false)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Currency currency;
 
-    @Column(name = "current_assets", nullable = false)
+    @Column(nullable = false)
     private Long currentAssets;
 
-    @Column(name = "non_current_assets", nullable = false)
+    @Column(nullable = false)
     private Long nonCurrentAssets;
 
-    @Column(name = "total_assets", nullable = false)
+    @Column(nullable = false)
     private Long totalAssets;
 
-    @Column(name = "current_liabilities", nullable = false)
+    @Column(nullable = false)
     private Long currentLiabilities;
 
-    @Column(name = "non_current_liabilities", nullable = false)
+    @Column(nullable = false)
     private Long nonCurrentLiabilities;
 
-    @Column(name = "total_liabilities", nullable = false)
+    @Column(nullable = false)
     private Long totalLiabilities;
 
-    @Column(name = "equality", nullable = false)
+    @Column(nullable = false)
     private Long equality;
 
-    @Column(name = "status")
+    @Column
     @Enumerated(EnumType.STRING)
     private ReportStatus status;
 
-    @Column(name = "comment")
+    @Column
     private String comment;
 }
