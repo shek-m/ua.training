@@ -19,6 +19,8 @@ public class ReportDTO {
     @NotEmpty
     private String companyName;
 
+    private Long id;
+
     @NotNull
     private Integer companyId;
 

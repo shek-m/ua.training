@@ -58,7 +58,7 @@
                             <td>[[${report.status}]]</td>
 <!--                            <td>[[${report.comment}]]</td>-->
                             <td>
-                                <a style="margin-right: 3px" href="">Edit</a>
+                                <a style="margin-right: 3px" th:href="@{/user/reports/{userID}/edit/{id}(userID=${report.user.id},id=${report.id})}">Edit</a>
                                 <a style="margin-right: 3px" href="">View comment</a>
                             </td>
                         </tr>

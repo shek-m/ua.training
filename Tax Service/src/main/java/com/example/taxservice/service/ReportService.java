@@ -32,10 +32,15 @@ public class ReportService {
         return reportRepository.findByUserId(id);
     }
 
+    public Report getById(@NonNull Long id) throws ReportNotFoundException {
+        return reportRepository.findById(id).orElseThrow(() ->
+            new ReportNotFoundException("Report with current ID does't exist"));}
+
     public Report addNewReport(ReportDTO reportDTO) throws IllegalArgumentException, DateTimeParseException {
         DataValidator validator = new DataValidator();
         Report report = Report.builder()
                                 .user(userService.getUser())
+                                .id(reportDTO.getId())
                                 .companyName(reportDTO.getCompanyName())
                                 .companyId(reportDTO.getCompanyId())
                                 .city(reportDTO.getCity())
@@ -51,7 +56,6 @@ public class ReportService {
                                 .equality(reportDTO.getEquality())
                                 .status(ReportStatus.PROCESSING)
                                 .build();
-
         return reportRepository.save(report);
     }
 }
