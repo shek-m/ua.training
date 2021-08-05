@@ -9,13 +9,22 @@
 <body>
 <div class="container">
     <div class="row">
-    <div class="d-flex justify-content-center">
+        <nav class="navbar navbar-expand-xxl navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand">Tax service</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" th:href="@{'/user/reports/' + ${userID}}">My reports</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    <div class="d-flex justify-content-center" style="margin-top: 20px">
         <h1>User main</h1>
-    </div>
-    <div class="d-flex justify-content-center">
-        <a class="btn-outline-success" role="button" th:href="@{'/user/reports/' + ${userID}}">Reports</a>
-    </div>
-    </div>
 </div>
 </body>
 </html>

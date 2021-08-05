@@ -43,6 +43,7 @@ public class UserController {
     public String addNewReport(Model model) {
         ReportDTO reportDto = new ReportDTO();
         model.addAttribute("report", reportDto);
+        model.addAttribute("userID", userService.getUser().getId());
         return "user/report_form";
     }
 }
