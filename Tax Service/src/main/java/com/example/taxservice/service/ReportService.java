@@ -37,6 +37,14 @@ public class ReportService {
         return reportRepository.findById(id).orElseThrow(() ->
             new ReportNotFoundException("Report with current ID doesn't exist"));}
 
+    public Report reviewReportByAdmin(Report report) throws DateTimeParseException {
+        return reportRepository.save(report);
+    }
+
+    public List<Report> filterUserReportsByStatus(ReportStatus statusVal) {
+        return reportRepository.findByStatus(statusVal);
+    }
+
     public Report addNewReport(ReportDTO reportDTO) throws IllegalArgumentException, DateTimeParseException {
         DataValidator validator = new DataValidator();
         Report report = Report.builder()
@@ -59,10 +67,6 @@ public class ReportService {
                 .comment(reportDTO.getComment())
                 .editable(false)
                 .build();
-        return reportRepository.save(report);
-    }
-
-    public Report reviewReportByAdmin(Report report) throws DateTimeParseException {
         return reportRepository.save(report);
     }
 }

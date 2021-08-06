@@ -2,10 +2,11 @@ package com.example.taxservice.controller;
 
 
 import com.example.taxservice.dto.ReportDTO;
+import com.example.taxservice.dto.ReportStatusDTO;
 import com.example.taxservice.entity.Report;
-import com.example.taxservice.service.exceptions.ReportNotFoundException;
 import com.example.taxservice.service.ReportService;
 import com.example.taxservice.service.UserService;
+import com.example.taxservice.service.exceptions.ReportNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +41,8 @@ public class UserController {
     public String getReportList(@PathVariable Long id,  Model model) {
         List<Report> list = reportService.listUserReports(userService.getUser().getId());
         model.addAttribute("reports", list);
-    //    model.addAttribute("userID", userService.getUser().getId());
+        model.addAttribute("statusDTO", new ReportStatusDTO());
+        model.addAttribute("userID", userService.getUser().getId());
         return "user/reports";
     }
 

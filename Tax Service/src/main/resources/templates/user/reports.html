@@ -24,6 +24,16 @@
                 <a class="nav-link" href="#">My reports</a>
                 <a class="nav-link" th:href="@{/logout}">Logout</a>
             </div>
+            <form class="d-flex" th:action="@{/user/reports/{id}/filter-by-status(id=${userID})}" th:method="post">
+                <select class="form-control me-2" th:field="${statusDTO.reportStatus}" id="status">
+                    <option value="">Select status</option>
+                    <option th:each="type : ${T(com.example.taxservice.entity.enums.ReportStatus).values()}"
+                            th:value="${type}"
+                            th:text="${type}">type
+                    </option>
+                </select>
+                <button class="btn btn-outline-light" type="submit">Filter</button>
+            </form>
         </div>
     </div>
     <div class="d-flex me-2">

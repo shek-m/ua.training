@@ -1,21 +1,20 @@
 package com.example.taxservice.controller;
 
 import com.example.taxservice.dto.ReportDTO;
+import com.example.taxservice.dto.ReportStatusDTO;
 import com.example.taxservice.entity.Report;
 import com.example.taxservice.service.ReportService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -58,6 +57,23 @@ public class ReportController {
         log.info("{}", report);
         modelAndView.addObject("message", "Report was reviewed");
         modelAndView.addObject("reports", reportService.listAllReports());
+        return modelAndView;
+    }
+
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PostMapping("/user/reports/{id}/filter-by-status")
+    public ModelAndView filterByStatus(@PathVariable Long id,@ModelAttribute("dto") ReportStatusDTO dto, ModelAndView modelAndView) {
+        modelAndView.setViewName("user/reports");
+        List<Report> filteredByStatus = reportService.filterUserReportsByStatus(dto.getReportStatus());
+
+        System.out.println(dto.getReportStatus().name());
+        filteredByStatus.forEach(System.out::println);
+
+        modelAndView.addObject("reports", filteredByStatus);
+        modelAndView.addObject("statusDTO", new ReportStatusDTO());
+        modelAndView.addObject("userID", id);
+
+        System.out.println("отработал");
         return modelAndView;
     }
 }
