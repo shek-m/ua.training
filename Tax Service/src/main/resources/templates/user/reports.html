@@ -7,11 +7,33 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="d-flex justify-content-start">
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <a class="btn btn-outline-secondary" href="/user/home" role="button">Homepage</a>
+<!--    <div class="d-flex justify-content-start m-auto">-->
+<!--        <div class="btn-group" role="group" aria-label="Basic outlined example">-->
+<!--            <a class="btn btn-outline-secondary" href="/user/home" role="button">Homepage</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<nav class="navbar navbar-expand-xxl navbar-dark bg-success">
+    <div class="container-fluid">
+        <a class="navbar-brand">Tax service</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" aria-current="page" href="/user/home">Home</a>
+                <a class="nav-link" href="#">My reports</a>
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
+            </div>
         </div>
     </div>
+    <div class="d-flex me-2">
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <a class="btn btn-outline-light" href="?lang=en" role="button">EN</a>
+            <a class="btn btn-outline-light" href="?lang=uk" role="button">UK</a>
+        </div>
+    </div>
+</nav>
+
     <div class="container-fluid text-center">
         <div><h1>List of reports</h1></div>
         <div>
