@@ -2,7 +2,7 @@ package com.example.taxservice.controller;
 
 import com.example.taxservice.dto.UserDTO;
 import com.example.taxservice.entity.User;
-import com.example.taxservice.service.UserAlreadyExistException;
+import com.example.taxservice.service.exceptions.UserAlreadyExistException;
 import com.example.taxservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.time.format.DateTimeParseException;
 
 @Slf4j

@@ -4,6 +4,7 @@ import com.example.taxservice.dto.UserDTO;
 import com.example.taxservice.entity.enums.Role;
 import com.example.taxservice.entity.User;
 import com.example.taxservice.repository.UserRepository;
+import com.example.taxservice.service.exceptions.UserAlreadyExistException;
 import com.example.taxservice.validation.DataValidator;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;

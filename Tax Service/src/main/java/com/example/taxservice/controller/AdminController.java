@@ -1,7 +1,7 @@
 package com.example.taxservice.controller;
 
 import com.example.taxservice.entity.Report;
-import com.example.taxservice.service.ReportNotFoundException;
+import com.example.taxservice.service.exceptions.ReportNotFoundException;
 import com.example.taxservice.service.ReportService;
 import com.example.taxservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.example.taxservice.service;
+package com.example.taxservice.service.exceptions;
 
 public class UserAlreadyExistException extends Exception {
     public UserAlreadyExistException(String message) {

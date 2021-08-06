@@ -4,6 +4,7 @@ import com.example.taxservice.dto.ReportDTO;
 import com.example.taxservice.entity.Report;
 import com.example.taxservice.entity.enums.ReportStatus;
 import com.example.taxservice.repository.ReportRepository;
+import com.example.taxservice.service.exceptions.ReportNotFoundException;
 import com.example.taxservice.validation.DataValidator;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -17,7 +17,9 @@
 
         <div class="d-lg-block justify-content-center">
             <div class="card" style="margin-top: 45px">
-                <h4 class="card-header">Input you data</h4>
+                <div class="text-center">
+                    <h5 class="card-header" th:text="'Report №' + ${report.id} "></h5>
+                </div>
                 <div class="card-body">
                     <p class="card-text">
                     <div th:if="${message != null}" class="alert alert-danger" role="alert">
@@ -47,24 +49,10 @@
                         <div class="form-group mb-3">
                             <label for="type">Legal entity type</label>
                             <input type="text" class="form-control" required id="type" th:field="${report.legalEntityType}" readonly>
-<!--                            <select class="form-control-plaintext selectpicker" th:field="${report.legalEntityType}" id="type" readonly="true">-->
-<!--                                <option value="">Nothing selected</option>-->
-<!--                                <option th:each="type : ${T(com.example.taxservice.entity.enums.LegalEntityType).values()}"-->
-<!--                                        th:value="${type}"-->
-<!--                                        th:text="${type}">type-->
-<!--                                </option>-->
-<!--                            </select>-->
                         </div>
                         <div class="form-group mb-3">
                             <label for="curr">Currency</label>
                             <input type="text" class="form-control" required id="curr" th:field="${report.currency}" readonly>
-<!--                            <select class="form-control-plaintext selectpicker" th:field="${report.currency}" id="curr" readonly="true">-->
-<!--                                <option value="">Nothing selected</option>-->
-<!--                                <option th:each="type : ${T(com.example.taxservice.entity.enums.Currency).values()}"-->
-<!--                                        th:value="${type}"-->
-<!--                                        th:text="${type}">type-->
-<!--                                </option>-->
-<!--                            </select>-->
                         </div>
                         <div class="mb-3">
                             <label for="cur-assets" class="form-label">Current assets</label>
@@ -110,7 +98,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary m-2">Submit</button>
-<!--                            <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>-->
+                            <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -122,11 +110,11 @@
 <!--</div>-->
 
 </body>
-<!--<script type="text/javascript">-->
-<!--    function cancelForm() {-->
-<!--        window.location = "[[@{/user/reports/{id}(id=${userID})}]]"-->
-<!--    }-->
-<!--</script>-->
+<script type="text/javascript">
+    function cancelForm() {
+        window.location = "[[@{/admin/reports}]]"
+    }
+</script>
 <script src="http://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="http://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
