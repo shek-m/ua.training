@@ -26,7 +26,7 @@
             </div>
         </div>
     </div>
-    <form class="d-inline-flex me-5" th:action="@{'/user/reports/' + ${userID} + '/filter-by-status'}" th:method="post">
+    <form class="d-inline-flex me-5" th:action="@{'/user/reports/' + ${userID}}" th:method="post">
         <select class="form-control-sm me-2" th:field="${statusDTO.reportStatus}" id="status">
             <option value="">Filter by status</option>
             <option th:each="type : ${T(com.example.taxservice.entity.enums.ReportStatus).values()}"
