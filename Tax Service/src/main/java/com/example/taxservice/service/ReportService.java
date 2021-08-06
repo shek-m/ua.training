@@ -37,12 +37,22 @@ public class ReportService {
         return reportRepository.findById(id).orElseThrow(() ->
             new ReportNotFoundException("Report with current ID doesn't exist"));}
 
+
     public Report reviewReportByAdmin(Report report) throws DateTimeParseException {
         return reportRepository.save(report);
     }
 
-    public List<Report> filterUserReportsByStatus(ReportStatus statusVal) {
-        return reportRepository.findByStatus(statusVal);
+
+    public List<Report> filterUserReportsByStatus(ReportStatus statusVal, Long id) {
+        return reportRepository.findByStatusAndUserId(statusVal, id);
+    }
+
+    public List<Report> sortUserReportsByDateDesc(Long id) {
+        return reportRepository.findByUserIdOrderByDateDesc(id);
+    }
+
+    public List<Report> filterUserReportsByStatusAndSortByDate(ReportStatus reportStatus, Long id){
+        return reportRepository.findByStatusAndUserIdOrderByDateDesc(reportStatus, id);
     }
 
     public Report addNewReport(ReportDTO reportDTO) throws IllegalArgumentException, DateTimeParseException {

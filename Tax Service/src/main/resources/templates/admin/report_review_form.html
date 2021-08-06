@@ -31,7 +31,7 @@
                     <div th:if="${message != null}" class="alert alert-danger" role="alert">
                         <div th:text="${message}"></div>
                     </div>
-                    <form th:action="@{/admin/checked}" method="post">
+                    <form th:action="@{/admin/checked}" th:method="post">
                         <input type="hidden" th:field="${report.id}">
                         <input type="hidden" th:field="${report.user}">
                         <input type="hidden" th:field="${report.totalAssets}">

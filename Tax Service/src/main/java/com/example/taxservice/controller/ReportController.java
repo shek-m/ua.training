@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.format.DateTimeParseException;
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -60,20 +59,24 @@ public class ReportController {
         return modelAndView;
     }
 
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.FOUND)
     @PostMapping("/user/reports/{id}/filter-by-status")
-    public ModelAndView filterByStatus(@PathVariable Long id,@ModelAttribute("dto") ReportStatusDTO dto, ModelAndView modelAndView) {
-        modelAndView.setViewName("user/reports");
-        List<Report> filteredByStatus = reportService.filterUserReportsByStatus(dto.getReportStatus());
+    public ModelAndView filterByStatus(@PathVariable Long id, @ModelAttribute("dto") ReportStatusDTO dto,
+                                       @RequestParam(name = "sortby", required = false) String sortBy,
+                                       ModelAndView mov) {
+        mov.setViewName("user/reports");
 
-        System.out.println(dto.getReportStatus().name());
-        filteredByStatus.forEach(System.out::println);
+        if (sortBy == null) {
+            mov.addObject("reports", reportService.filterUserReportsByStatus(dto.getReportStatus(), id));
+        } else {
+            switch (sortBy) {
+                case "date" : mov.addObject("reports",
+                        reportService.filterUserReportsByStatusAndSortByDate(dto.getReportStatus(), id));
+            }
+        }
 
-        modelAndView.addObject("reports", filteredByStatus);
-        modelAndView.addObject("statusDTO", new ReportStatusDTO());
-        modelAndView.addObject("userID", id);
-
-        System.out.println("отработал");
-        return modelAndView;
+        mov.addObject("statusDTO", new ReportStatusDTO());
+        mov.addObject("userID", id);
+        return mov;
     }
 }

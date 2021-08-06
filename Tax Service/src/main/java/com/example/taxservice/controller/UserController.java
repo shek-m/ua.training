@@ -13,9 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 @Slf4j
 @Controller
@@ -38,11 +37,34 @@ public class UserController {
     }
 
     @GetMapping("/user/reports/{id}")
-    public String getReportList(@PathVariable Long id,  Model model) {
-        List<Report> list = reportService.listUserReports(userService.getUser().getId());
-        model.addAttribute("reports", list);
+    public String getReportList(@PathVariable Long id,
+                                @RequestParam(name = "sortby", required = false) String sortBy, Model model) {
+
+        if (sortBy == null) {
+            model.addAttribute("reports", reportService.listUserReports(id));
+        } else {
+            switch (sortBy) {
+                case "date" : model.addAttribute("reports", reportService.sortUserReportsByDateDesc(id));
+            }
+        }
+//
+//        if (sortBy == null && stat == null) {
+//            model.addAttribute("reports", reportService.listUserReports(id));
+//        } else if (sortBy == null && stat != null) {
+//            model.addAttribute("reports", reportService.filterUserReportsByStatus(ReportStatus.valueOf(stat), id));
+//        } else if (sortBy != null && stat == null) {
+//            switch (sortBy){
+//                case "date" : model.addAttribute("reports", reportService.sortUserReportsByDateDesc(id));
+//            }
+//        } else {
+//            switch (sortBy){
+//                case "date" : model.addAttribute("reports",
+//                        reportService.filterUserReportsByStatusAndSortByDate(ReportStatus.valueOf(stat), id));
+//            }
+//        }
+
         model.addAttribute("statusDTO", new ReportStatusDTO());
-        model.addAttribute("userID", userService.getUser().getId());
+        model.addAttribute("userID", id);
         return "user/reports";
     }
 
@@ -69,6 +91,5 @@ public class UserController {
             ra.addFlashAttribute("message", ex.getMessage());
             return "redirect:/user/reports";
         }
-
     }
 }

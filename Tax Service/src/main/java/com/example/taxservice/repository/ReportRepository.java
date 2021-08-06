@@ -15,5 +15,9 @@ public interface ReportRepository extends CrudRepository<Report, Long> {
     @Override
     Optional<Report> findById(Long id);
 
-    List<Report> findByStatus(ReportStatus statusVal);
+    List<Report> findByStatusAndUserId(ReportStatus statusVal, Long id);
+
+    List<Report> findByUserIdOrderByDateDesc(Long id);
+
+    List<Report> findByStatusAndUserIdOrderByDateDesc(ReportStatus statusVal, Long id);
 }
