@@ -44,9 +44,10 @@ public class UserController {
             model.addAttribute("reports", reportService.listUserReports(id));
         } else {
             switch (sortBy) {
-                case "date-d" : model.addAttribute("reports", reportService.sortUserReportsByDateDesc(id));
-                                break;
-                case "date-a" : model.addAttribute("reports", reportService.sortUserReportsByDateAsc(id));
+                case "date-d" : model.addAttribute("reports", reportService.sortUserReportsByDateDesc(id)); break;
+                case "date-a" : model.addAttribute("reports", reportService.sortUserReportsByDateAsc(id)); break;
+                case "type-d" : model.addAttribute("reports", reportService.sortUserReportsByTypeDesc(id)); break;
+                case "type-a" : model.addAttribute("reports", reportService.sortUserReportsByTypeAsc(id)); break;
             }
         }
         model.addAttribute("statusDTO", new ReportStatusDTO());

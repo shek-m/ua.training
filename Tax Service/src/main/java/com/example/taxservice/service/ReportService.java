@@ -56,8 +56,12 @@ public class ReportService {
         return reportRepository.findByUserIdOrderByDateAsc(id);
     }
 
-    public List<Report> filterUserReportsByStatusAndSortByDate(ReportStatus reportStatus, Long id){
-        return reportRepository.findByStatusAndUserIdOrderByDateDesc(reportStatus, id);
+    public List<Report> sortUserReportsByTypeDesc(Long id) {
+        return reportRepository.findByUserIdOrderByReportTypeDesc(id);
+    }
+
+    public List<Report> sortUserReportsByTypeAsc(Long id) {
+        return reportRepository.findByUserIdOrderByReportTypeAsc(id);
     }
 
     public Report addNewReport(ReportDTO reportDTO) throws IllegalArgumentException, DateTimeParseException {
