@@ -59,6 +59,18 @@ public class ReportController {
         return mov;
     }
 
+//    @PatchMapping("/user/reports/{id}/saved")
+//    public ModelAndView editReportByUser(@PathVariable Long id, @ModelAttribute("report") @Valid ReportDTO reportDto){
+//        try {
+//            Report addedReport = reportService.addNewReport(reportDto);
+//        } catch (DateTimeParseException ex) {
+//            return new ModelAndView("user/report_form", "message",
+//                    "Input date format is not appropriate.");
+//        }
+//        log.info("{}", reportDto);
+//        return new ModelAndView("successReportAdded");
+//    }
+
     @ModelAttribute(name = "userID")
     public Long getAuthUserId() {
         return userService.getUser().getId();
