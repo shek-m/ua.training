@@ -11,14 +11,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Slf4j
 @Controller
+@RequestMapping("/user")
 public class UserController {
     private ReportService reportService;
     private UserService userService;
@@ -29,12 +27,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/user/home")
+    @GetMapping("/home")
     public String userHomePage(Model model){
         return "user/userMain";
     }
 
-    @GetMapping("/user/reports/{id}")
+    @GetMapping("/reports/{id}")
     public String getReportList(@PathVariable Long id,
                                 @RequestParam(name = "sortby", required = false) String sortBy, Model model) {
 
@@ -52,14 +50,14 @@ public class UserController {
         return "user/reports";
     }
 
-    @GetMapping("/user/new-report")
+    @GetMapping("/new-report")
     public String addNewReport(Model model) {
         model.addAttribute("report", new ReportDTO());
         model.addAttribute("pageTitle", "Add new report");
         return "user/report_form";
     }
 
-    @GetMapping("/user/reports/{userId}/edit/{id}")
+    @GetMapping("/reports/{userId}/edit/{id}")
     public String editReport(@PathVariable Long userId, @PathVariable Long id, Model model, RedirectAttributes ra) {
         try {
             Report report = reportService.getById(id);

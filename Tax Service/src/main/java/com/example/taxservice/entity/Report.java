@@ -74,7 +74,7 @@ public class Report {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private ReportStatus status;
+    private ReportStatus reportStatus;
 
     @Column
     private String comment;

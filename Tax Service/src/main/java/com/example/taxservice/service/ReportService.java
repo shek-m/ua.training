@@ -45,7 +45,7 @@ public class ReportService {
 
 
     public List<Report> filterUserReportsByStatus(ReportStatus statusVal, Long id) {
-        return reportRepository.findByStatusAndUserId(statusVal, id);
+        return reportRepository.findByReportStatusAndUserId(statusVal, id);
     }
 
     public List<Report> sortUserReportsByDateDesc(Long id) {
@@ -82,7 +82,7 @@ public class ReportService {
                 .nonCurrentLiabilities(reportDTO.getNonCurrentLiabilities())
                 .totalLiabilities((reportDTO.getCurrentLiabilities() + reportDTO.getNonCurrentLiabilities()))
                 .equality(reportDTO.getEquality())
-                .status(ReportStatus.PROCESSING)
+                .reportStatus(ReportStatus.PROCESSING)
                 .reportType(reportDTO.getReportType())
                 .comment(reportDTO.getComment())
                 .editable(false)

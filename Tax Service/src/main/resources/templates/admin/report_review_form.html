@@ -28,9 +28,9 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-                    <div th:if="${message != null}" class="alert alert-danger" role="alert">
-                        <div th:text="${message}"></div>
-                    </div>
+<!--                    <div th:if="${message != null}" class="alert alert-danger" role="alert">-->
+<!--                        <div th:text="${message}"></div>-->
+<!--                    </div>-->
                     <form th:action="@{/admin/checked}" th:method="post">
                         <input type="hidden" th:field="${report.id}">
                         <input type="hidden" th:field="${report.user}">
@@ -90,8 +90,8 @@
                             <input type="text" class="form-control" required id="comment" th:field="${report.comment}">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="curr">Select status</label>
-                            <select class="form-control selectpicker" th:field="${report.status}" id="status" >
+                            <label for="repstat">Select status</label>
+                            <select class="form-control selectpicker" th:field="${report.reportStatus}" id="repstat" >
                                 <option value="">Nothing selected</option>
                                 <option th:each="type : ${T(com.example.taxservice.entity.enums.ReportStatus).values()}"
                                         th:value="${type}"

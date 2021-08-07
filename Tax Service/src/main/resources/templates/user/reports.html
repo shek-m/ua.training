@@ -98,7 +98,7 @@
                             <td>[[${report.nonCurrentLiabilities}]]</td>
                             <td>[[${report.totalLiabilities}]]</td>
                             <td>[[${report.equality}]]</td>
-                            <td>[[${report.status}]]</td>
+                            <td>[[${report.reportStatus}]]</td>
                                 <span th:if="${report.editable}">
                                     <td>
                                         <a class="btn btn-outline-secondary" style="margin-right: 3px" th:href="@{/user/reports/{userID}/edit/{id}(userID=${report.user.id},id=${report.id})}">Edit</a>
