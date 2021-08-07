@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -30,9 +31,6 @@ public class UserController {
 
     @GetMapping("/user/home")
     public String userHomePage(Model model){
-        Long id = userService.getUser().getId();
-        model.addAttribute("userID", id);
-
         return "user/userMain";
     }
 
@@ -51,15 +49,12 @@ public class UserController {
             }
         }
         model.addAttribute("statusDTO", new ReportStatusDTO());
-        model.addAttribute("userID", id);
         return "user/reports";
     }
 
     @GetMapping("/user/new-report")
     public String addNewReport(Model model) {
-        ReportDTO reportDto = new ReportDTO();
-        model.addAttribute("report", reportDto);
-        model.addAttribute("userID", userService.getUser().getId());
+        model.addAttribute("report", new ReportDTO());
         model.addAttribute("pageTitle", "Add new report");
         return "user/report_form";
     }
@@ -69,7 +64,6 @@ public class UserController {
         try {
             Report report = reportService.getById(id);
             model.addAttribute("report", reportService.mappingReportToDto(report));
-            model.addAttribute("userID", id);
             model.addAttribute("pageTitle", "Edit report №" + userId);
             return "user/report_form";
 
@@ -78,5 +72,10 @@ public class UserController {
             ra.addFlashAttribute("message", ex.getMessage());
             return "redirect:/user/reports";
         }
+    }
+
+    @ModelAttribute(name = "userID")
+    public Long getAuthUserId() {
+        return userService.getUser().getId();
     }
 }
