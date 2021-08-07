@@ -2,8 +2,10 @@ package com.example.taxservice.dto;
 
 import lombok.*;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -15,10 +17,12 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
+    @Size(min=2, max=30, message = "incorrect name")
     private String name;
 
     @NotNull
     @NotEmpty
+    @Size(min=2, max=45, message = "incorrect surname")
     private String surname;
 
     @NotNull
@@ -27,6 +31,7 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
+    @Email(message = "wrong email")
     private String email;
 
 
@@ -36,6 +41,7 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
+    @Size(min=6, message = "little pass")
     private String password;
 
 }

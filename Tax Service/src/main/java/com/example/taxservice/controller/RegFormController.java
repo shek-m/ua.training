@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,7 +26,8 @@ public class RegFormController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/registration")
-    public ModelAndView addUser(@ModelAttribute("user") UserDTO userDto, ModelAndView mov) {
+    public ModelAndView addUser(@ModelAttribute("user") UserDTO userDto, BindingResult bindingResult,
+                                ModelAndView mov) {
 
         mov.setViewName("registration");
 
