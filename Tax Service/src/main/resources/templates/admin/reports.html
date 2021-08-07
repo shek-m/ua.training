@@ -25,6 +25,7 @@
                 <thead class="table-light">
                 <tr>
                     <th>ID</th>
+                    <th>Type</th>
                     <th>Company Name</th>
                     <th>Company ID</th>
                     <th>City</th>
@@ -46,6 +47,7 @@
                 <th:block th:each="report : ${reports}">
                     <tr>
                         <td>[[${report.id}]]</td>
+                        <td>[[${report.reportType}]]</td>
                         <td>[[${report.companyName}]]</td>
                         <td>[[${report.companyId}]]</td>
                         <td>[[${report.city}]]</td>

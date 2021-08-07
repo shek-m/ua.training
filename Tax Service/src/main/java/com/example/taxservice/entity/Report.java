@@ -4,6 +4,7 @@ package com.example.taxservice.entity;
 import com.example.taxservice.entity.enums.Currency;
 import com.example.taxservice.entity.enums.LegalEntityType;
 import com.example.taxservice.entity.enums.ReportStatus;
+import com.example.taxservice.entity.enums.ReportType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,6 +29,10 @@ public class Report {
 
     @Column(nullable = false)
     private String companyName;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ReportType reportType;
 
     @Column(nullable = false)
     private Integer companyId;

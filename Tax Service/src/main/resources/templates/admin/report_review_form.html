@@ -36,6 +36,7 @@
                         <input type="hidden" th:field="${report.user}">
                         <input type="hidden" th:field="${report.totalAssets}">
                         <input type="hidden" th:field="${report.totalLiabilities}">
+                        <input type="hidden" th:field="${report.date}">
                         <div class="mb-3">
                             <label for="company_name" class="form-label">Company name</label>
                             <input type="text" class="form-control" required id="company_name" th:field="${report.companyName}" readonly>
@@ -50,7 +51,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="birth" class="form-label">Report date</label>
-                            <input type="text" class="form-control" required id="birth" th:field="${report.date}" readonly>
+                            <p type="text" class="form-control" required id="birth" th:text="${#temporals.format(report.date, 'dd-MM-yyyy')}" readonly></p>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="reptype">Report type</label>
+                            <input type="text" class="form-control" required id="reptype" th:field="${report.reportType}" readonly>
                         </div>
                         <div class="form-group mb-3">
                             <label for="type">Legal entity type</label>

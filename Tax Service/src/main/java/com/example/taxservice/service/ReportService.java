@@ -10,6 +10,7 @@ import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
@@ -74,9 +75,30 @@ public class ReportService {
                 .totalLiabilities((reportDTO.getCurrentLiabilities() + reportDTO.getNonCurrentLiabilities()))
                 .equality(reportDTO.getEquality())
                 .status(ReportStatus.PROCESSING)
+                .reportType(reportDTO.getReportType())
                 .comment(reportDTO.getComment())
                 .editable(false)
                 .build();
         return reportRepository.save(report);
+    }
+
+    public ReportDTO mappingReportToDto(Report report) {
+        return ReportDTO.builder()
+                        .id(report.getId())
+                        .companyName(report.getCompanyName())
+                        .companyId(report.getCompanyId())
+                        .city(report.getCity())
+                        .date(report.getDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
+                        .legalEntityType(report.getLegalEntityType())
+                        .currency(report.getCurrency())
+                        .currentAssets(report.getCurrentAssets())
+                        .nonCurrentAssets(report.getNonCurrentAssets())
+                        .currentLiabilities(report.getCurrentLiabilities())
+                        .nonCurrentLiabilities(report.getNonCurrentLiabilities())
+                        .equality(report.getEquality())
+                        .comment(report.getComment())
+                        .editable(report.getEditable())
+                        .reportType(report.getReportType())
+                        .build();
     }
 }

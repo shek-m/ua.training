@@ -61,20 +61,8 @@ public class ReportController {
 
     @ResponseStatus(HttpStatus.FOUND)
     @PostMapping("/user/reports/{id}")
-    public ModelAndView filterByStatus(@PathVariable Long id, ReportStatusDTO dto,
-//                                       @RequestParam(name = "sortby", required = false) String sortBy,
-                                       ModelAndView mov) {
+    public ModelAndView filterByStatus(@PathVariable Long id, ReportStatusDTO dto, ModelAndView mov) {
         mov.setViewName("user/reports");
-
-//        if (sortBy == null) {
-//            mov.addObject("reports", reportService.filterUserReportsByStatus(dto.getReportStatus(), id));
-//        } else {
-//            switch (sortBy) {
-//                case "date" : mov.addObject("reports",
-//                        reportService.filterUserReportsByStatusAndSortByDate(dto.getReportStatus(), id));
-//            }
-//        }
-
         mov.addObject("reports", reportService.filterUserReportsByStatus(dto.getReportStatus(), id));
         mov.addObject("statusDTO", new ReportStatusDTO());
         mov.addObject("userID", id);

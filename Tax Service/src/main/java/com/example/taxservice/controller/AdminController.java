@@ -47,7 +47,6 @@ public class AdminController {
             return "admin/reports";
         }
         model.addAttribute("report", report);
-
         return "admin/report_review_form";
     }
 }

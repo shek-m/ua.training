@@ -47,22 +47,6 @@ public class UserController {
                 case "date" : model.addAttribute("reports", reportService.sortUserReportsByDateDesc(id));
             }
         }
-//
-//        if (sortBy == null && stat == null) {
-//            model.addAttribute("reports", reportService.listUserReports(id));
-//        } else if (sortBy == null && stat != null) {
-//            model.addAttribute("reports", reportService.filterUserReportsByStatus(ReportStatus.valueOf(stat), id));
-//        } else if (sortBy != null && stat == null) {
-//            switch (sortBy){
-//                case "date" : model.addAttribute("reports", reportService.sortUserReportsByDateDesc(id));
-//            }
-//        } else {
-//            switch (sortBy){
-//                case "date" : model.addAttribute("reports",
-//                        reportService.filterUserReportsByStatusAndSortByDate(ReportStatus.valueOf(stat), id));
-//            }
-//        }
-
         model.addAttribute("statusDTO", new ReportStatusDTO());
         model.addAttribute("userID", id);
         return "user/reports";
@@ -81,9 +65,9 @@ public class UserController {
     public String editReport(@PathVariable Long userId, @PathVariable Long id, Model model, RedirectAttributes ra) {
         try {
             Report report = reportService.getById(id);
-            model.addAttribute("report", report);
-            model.addAttribute("userID", userService.getUser().getId());
-            model.addAttribute("pageTitle", "Edit report №" + id);
+            model.addAttribute("report", reportService.mappingReportToDto(report));
+            model.addAttribute("userID", id);
+            model.addAttribute("pageTitle", "Edit report №" + userId);
             return "user/report_form";
 
         } catch (ReportNotFoundException ex){
