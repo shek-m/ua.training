@@ -52,6 +52,10 @@ public class ReportService {
         return reportRepository.findByUserIdOrderByDateDesc(id);
     }
 
+    public List<Report> sortUserReportsByDateAsc(Long id) {
+        return reportRepository.findByUserIdOrderByDateAsc(id);
+    }
+
     public List<Report> filterUserReportsByStatusAndSortByDate(ReportStatus reportStatus, Long id){
         return reportRepository.findByStatusAndUserIdOrderByDateDesc(reportStatus, id);
     }

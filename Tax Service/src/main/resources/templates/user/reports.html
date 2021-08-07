@@ -4,14 +4,10 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>My reports</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
 </head>
 <body>
-<!--    <div class="d-flex justify-content-start m-auto">-->
-<!--        <div class="btn-group" role="group" aria-label="Basic outlined example">-->
-<!--            <a class="btn btn-outline-secondary" href="/user/home" role="button">Homepage</a>-->
-<!--        </div>-->
-<!--    </div>-->
 <nav class="navbar navbar-expand-xxl navbar-dark bg-success">
     <div class="container-fluid">
         <a class="navbar-brand">Tax service</a>
@@ -36,22 +32,23 @@
         </select>
         <button class="btn btn-outline-light" type="submit">Ok</button>
     </form>
-<!--    <select class="selectpicker me-1" onchange="location = this.options[this.selectedIndex].value;" data-width="auto" data-title="Manage entries" data-style="btn btn-light">-->
-<!--        <option value="#">Status</option>-->
-<!--        <option value="?stat=PROCESSING">Processing</option>-->
-<!--        <option value="?stat=DENIED">Denied</option>-->
-<!--        <option value="?stat=SUBMITTED">Submitted</option>-->
-<!--    </select>-->
-    <select class="selectpicker me-1" onchange="location = this.options[this.selectedIndex].value;" data-width="auto" data-title="Manage entries" data-style="btn btn-light">
-        <option value="#">Sort by</option>
-        <option value="?sortby=date">Date</option>
-        <option value="#">Link_2</option>
+    <select id="slct" class="me-1">
+        <option>Nothing selected</option>
+        <option value="?sortby=date-d">Date ▼</option>
+        <option value="?sortby=date-a">Date ▲</option>
     </select>
+<!--    <select class="selectpicker me-1" onchange="location = this.options[this.selectedIndex].value;" data-width="auto" data-title="Manage entries" data-style="btn btn-light">-->
+<!--        <option value="#">Sort by</option>-->
+<!--        <option value="?sortby=date-d ">Date ▼</option>-->
+<!--        <option value="?sortby=date-a">Date ▲</option>-->
+<!--    </select>-->
+    <div>
     <div class="d-flex me-2">
         <div class="btn-group" role="group" aria-label="Basic outlined example">
             <a class="btn btn-outline-light" href="?lang=en" role="button">EN</a>
             <a class="btn btn-outline-light" href="?lang=uk" role="button">UK</a>
         </div>
+    </div>
     </div>
 </nav>
 
@@ -79,7 +76,6 @@
                         <th>Total liabilities </th>
                         <th>Equality </th>
                         <th>Status</th>
-<!--                        <th>Comment</th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -101,18 +97,11 @@
                             <td>[[${report.totalLiabilities}]]</td>
                             <td>[[${report.equality}]]</td>
                             <td>[[${report.status}]]</td>
-<!--                            <td>[[${report.comment}]]</td>-->
-<!--                            <td>-->
-<!--                            <td>-->
-<!--                                <span th:if="${teacher.gender == 'F'}">Female</span>-->
-<!--                                <span th:unless="${teacher.gender == 'F'}">Male</span>-->
-<!--                            </td>-->
                                 <span th:if="${report.editable}">
                                     <td>
                                         <a class="btn btn-outline-secondary" style="margin-right: 3px" th:href="@{/user/reports/{userID}/edit/{id}(userID=${report.user.id},id=${report.id})}">Edit</a>
                                     </td>
                                 </span>
-<!--                            </td>-->
                         </tr>
                     </th:block>
                 </tbody>
@@ -120,5 +109,13 @@
         </div>
         </div>
     </div>
+<script>
+    $(document).ready(function() {
+        $("#slct").change(function(){
+            var chn = $(this).val();
+            window.open(chn, "_self");
+        });
+    });
+</script>
 </body>
 </html>

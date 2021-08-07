@@ -19,5 +19,7 @@ public interface ReportRepository extends CrudRepository<Report, Long> {
 
     List<Report> findByUserIdOrderByDateDesc(Long id);
 
+    List<Report> findByUserIdOrderByDateAsc(Long id);
+
     List<Report> findByStatusAndUserIdOrderByDateDesc(ReportStatus statusVal, Long id);
 }

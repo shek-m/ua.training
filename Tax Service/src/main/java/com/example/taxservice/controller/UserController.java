@@ -44,7 +44,9 @@ public class UserController {
             model.addAttribute("reports", reportService.listUserReports(id));
         } else {
             switch (sortBy) {
-                case "date" : model.addAttribute("reports", reportService.sortUserReportsByDateDesc(id));
+                case "date-d" : model.addAttribute("reports", reportService.sortUserReportsByDateDesc(id));
+                                break;
+                case "date-a" : model.addAttribute("reports", reportService.sortUserReportsByDateAsc(id));
             }
         }
         model.addAttribute("statusDTO", new ReportStatusDTO());
