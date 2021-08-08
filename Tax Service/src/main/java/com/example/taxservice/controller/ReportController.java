@@ -54,22 +54,14 @@ public class ReportController {
     @PostMapping("/user/reports/{id}")
     public ModelAndView filterByStatus(@PathVariable Long id, ReportStatusDTO dto, ModelAndView mov) {
         mov.setViewName("user/reports");
-        mov.addObject("reports", reportService.filterUserReportsByStatus(dto.getReportStatus(), id));
+        if (dto.getReportStatus() == null) {
+            mov.addObject("reports", reportService.listUserReports(id));
+        } else {
+            mov.addObject("reports", reportService.filterUserReportsByStatus(dto.getReportStatus(), id));
+        }
         mov.addObject("statusDTO", new ReportStatusDTO());
         return mov;
     }
-
-//    @PatchMapping("/user/reports/{id}/saved")
-//    public ModelAndView editReportByUser(@PathVariable Long id, @ModelAttribute("report") @Valid ReportDTO reportDto){
-//        try {
-//            Report addedReport = reportService.addNewReport(reportDto);
-//        } catch (DateTimeParseException ex) {
-//            return new ModelAndView("user/report_form", "message",
-//                    "Input date format is not appropriate.");
-//        }
-//        log.info("{}", reportDto);
-//        return new ModelAndView("successReportAdded");
-//    }
 
     @ModelAttribute(name = "userID")
     public Long getAuthUserId() {

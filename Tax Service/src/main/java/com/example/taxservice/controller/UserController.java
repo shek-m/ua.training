@@ -34,7 +34,8 @@ public class UserController {
 
     @GetMapping("/reports/{id}")
     public String getReportList(@PathVariable Long id,
-                                @RequestParam(name = "sortby", required = true) String sortBy, Model model) {
+                                @RequestParam(name = "sortby", required = true) String sortBy,
+                                Model model) {
 
             switch (sortBy) {
                 case "def" : model.addAttribute("reports", reportService.listUserReports(id)); break;
@@ -48,19 +49,6 @@ public class UserController {
         model.addAttribute("sortBy", sortBy);
         return "user/reports";
     }
-
-//    public String filterByStatus(@PathVariable Long id,
-//                                 @RequestParam(name = "filter", required = true) String sortBy, Model model) {
-//
-//        switch (filter) {
-//            case "def" : model.addAttribute("reports", reportService.listUserReports(id)); break;
-//
-//        }
-//
-//        model.addAttribute("statusDTO", new ReportStatusDTO());
-//        model.addAttribute("sortBy", sortBy);
-//        return "user/reports";
-//    }
 
     @GetMapping("/new-report")
     public String addNewReport(Model model) {
