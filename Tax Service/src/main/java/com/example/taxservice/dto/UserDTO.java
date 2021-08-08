@@ -26,7 +26,6 @@ public class UserDTO {
     private String surname;
 
     @NotNull
-    @NotEmpty
     private String date;
 
     @NotNull

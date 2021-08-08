@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.time.format.DateTimeParseException;
 
 @Slf4j
@@ -26,17 +27,19 @@ public class RegFormController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/registration")
-    public ModelAndView addUser(@ModelAttribute("user") UserDTO userDto, BindingResult bindingResult,
+    public ModelAndView addUser(@ModelAttribute("user") @Valid UserDTO userDto, BindingResult bindingResult,
                                 ModelAndView mov) {
-
         mov.setViewName("registration");
+        if (bindingResult.hasErrors()) {
+            return mov;
+        }
 
-        try{
+        try {
             User registered = userservice.registerNewAccountUser(userDto);
-        } catch(UserAlreadyExistException ex){
+        } catch (UserAlreadyExistException ex) {
             mov.addObject("message", "An account for that username/email already exists.");
             return mov;
-        } catch(DateTimeParseException ex){
+        } catch (DateTimeParseException ex) {
             mov.addObject("message", "Input date format is not appropriate.");
             return mov;
         }
