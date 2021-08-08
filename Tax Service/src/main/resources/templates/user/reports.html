@@ -47,8 +47,8 @@
     <div>
     <div class="d-flex me-2">
         <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <a class="btn btn-outline-light" href="?lang=en" role="button">EN</a>
-            <a class="btn btn-outline-light" href="?lang=uk" role="button">UK</a>
+            <a class="btn btn-outline-light" th:href="@{'/user/reports/' + ${userID}(sortby=${sortBy}, lang='en')}" role="button">EN</a>
+            <a class="btn btn-outline-light" th:href="@{'/user/reports/' + ${userID}(sortby=${sortBy}, lang='uk')}" role="button">UK</a>
         </div>
     </div>
     </div>

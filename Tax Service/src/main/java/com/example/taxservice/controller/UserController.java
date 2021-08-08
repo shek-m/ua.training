@@ -34,21 +34,33 @@ public class UserController {
 
     @GetMapping("/reports/{id}")
     public String getReportList(@PathVariable Long id,
-                                @RequestParam(name = "sortby", required = false) String sortBy, Model model) {
+                                @RequestParam(name = "sortby", required = true) String sortBy, Model model) {
 
-        if (sortBy == null) {
-            model.addAttribute("reports", reportService.listUserReports(id));
-        } else {
             switch (sortBy) {
+                case "def" : model.addAttribute("reports", reportService.listUserReports(id)); break;
                 case "date-d" : model.addAttribute("reports", reportService.sortUserReportsByDateDesc(id)); break;
                 case "date-a" : model.addAttribute("reports", reportService.sortUserReportsByDateAsc(id)); break;
                 case "type-d" : model.addAttribute("reports", reportService.sortUserReportsByTypeDesc(id)); break;
                 case "type-a" : model.addAttribute("reports", reportService.sortUserReportsByTypeAsc(id)); break;
             }
-        }
+
         model.addAttribute("statusDTO", new ReportStatusDTO());
+        model.addAttribute("sortBy", sortBy);
         return "user/reports";
     }
+
+//    public String filterByStatus(@PathVariable Long id,
+//                                 @RequestParam(name = "filter", required = true) String sortBy, Model model) {
+//
+//        switch (filter) {
+//            case "def" : model.addAttribute("reports", reportService.listUserReports(id)); break;
+//
+//        }
+//
+//        model.addAttribute("statusDTO", new ReportStatusDTO());
+//        model.addAttribute("sortBy", sortBy);
+//        return "user/reports";
+//    }
 
     @GetMapping("/new-report")
     public String addNewReport(Model model) {
