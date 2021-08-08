@@ -12,7 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -35,16 +39,19 @@ public class UserController {
     @GetMapping("/reports/{id}")
     public String getReportList(@PathVariable Long id,
                                 @RequestParam(name = "sortby", required = true) String sortBy,
-                                Model model) {
+                                Model model, HttpServletRequest request, SessionLocaleResolver slr) {
 
+        List<Report> reports = reportService.listUserReports(id);
             switch (sortBy) {
-                case "def" : model.addAttribute("reports", reportService.listUserReports(id)); break;
-                case "date-d" : model.addAttribute("reports", reportService.sortUserReportsByDateDesc(id)); break;
-                case "date-a" : model.addAttribute("reports", reportService.sortUserReportsByDateAsc(id)); break;
-                case "type-d" : model.addAttribute("reports", reportService.sortUserReportsByTypeDesc(id)); break;
-                case "type-a" : model.addAttribute("reports", reportService.sortUserReportsByTypeAsc(id)); break;
+                case "def" : break;
+                case "date-d" : reports = reportService.sortUserReportsByDateDesc(id); break;
+                case "date-a" : reports = reportService.sortUserReportsByDateAsc(id); break;
+                case "type-d" : reports = reportService.sortUserReportsByTypeDesc(id); break;
+                case "type-a" : reports = reportService.sortUserReportsByTypeAsc(id); break;
             }
 
+        model.addAttribute("loc", slr.resolveLocale(request));
+        model.addAttribute("reports", reports);
         model.addAttribute("statusDTO", new ReportStatusDTO());
         model.addAttribute("sortBy", sortBy);
         return "user/reports";
@@ -76,4 +83,8 @@ public class UserController {
     public Long getAuthUserId() {
         return userService.getUser().getId();
     }
+
+//    public Locale resolveLocale(LocaleResolver slr, HttpServletRequest request){
+//        return slr.resolveLocale(request);
+//    }
 }

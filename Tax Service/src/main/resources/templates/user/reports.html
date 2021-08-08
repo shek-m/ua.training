@@ -88,7 +88,7 @@
                             <td>[[${report.companyId}]]</td>
                             <td>[[${report.city}]]</td>
                             <td>[[${#temporals.format(report.date, 'dd-MM-yyyy')}]]</td>
-                            <td>[[${report.legalEntityType}]]</td>
+                            <td>[[${report.legalEntityType.getLocaleName(loc)}]]</td>
                             <td>[[${report.currency}]]</td>
                             <td>[[${report.currentAssets}]]</td>
                             <td>[[${report.nonCurrentAssets}]]</td>
