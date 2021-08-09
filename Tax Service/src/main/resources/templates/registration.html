@@ -20,8 +20,11 @@
                 <h4 class="card-header">[[#{app.auth.title}]]</h4>
                 <div class="card-body">
                     <p class="card-text">
-                    <div th:if="${message != null}" class="alert alert-danger" role="alert">
-                        <div th:text="${message}"></div>
+                    <div th:if="${userExistsEx != null}" class="alert alert-danger" role="alert">
+                        <div th:text="#{register.userExistsEx}"></div>
+                    </div>
+                    <div th:if="${wrongDateEx != null}" class="alert alert-danger" role="alert">
+                        <div th:text="#{register.userExistsEx}"></div>
                     </div>
 
                     <form name="f" th:action="@{/registration}" method="post" th:object="${user}">
@@ -41,9 +44,6 @@
                             <label for="date" class="form-label">Date of birth</label>
                             <input type="date" class="form-control" required id="date" th:field="${user.date}">
                             <div style="color: red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
-
-                            <!--                                   aria-describedby="dataHelp" placeholder="20-01-2020">-->
-<!--                            <div id="dataHelp" class="form-text">Input the date using following format: dd-MM-yyyy</div>-->
                         </div>
                         <div class="mb-3">
                             <label for="username" class="form-label">[[#{app.auth.username}]]</label>

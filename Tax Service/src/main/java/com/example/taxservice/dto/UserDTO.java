@@ -17,7 +17,7 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
-    @Size(min=2, max=30, message = "incorrect name")
+    @Size(min=2, max=30, message = "{usermain.logout}")
     private String name;
 
     @NotNull
