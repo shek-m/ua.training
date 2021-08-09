@@ -17,12 +17,12 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
-    @Size(min=2, max=30, message = "{usermain.logout}")
+    @Size(min=2, max=30, message = "{register.validation.name}")
     private String name;
 
     @NotNull
     @NotEmpty
-    @Size(min=2, max=45, message = "incorrect surname")
+    @Size(min=2, max=45, message = "{register.validation.surname}")
     private String surname;
 
     @NotNull
@@ -30,7 +30,7 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
-    @Email(message = "wrong email")
+    @Email(message = "{register.validation.email}")
     private String email;
 
 
@@ -40,7 +40,6 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
-    @Size(min=6, message = "little pass")
+    @Size(min=6, message = "{register.validation.password}")
     private String password;
-
 }
