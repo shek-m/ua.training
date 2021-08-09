@@ -83,13 +83,13 @@
                     <th:block th:each="report : ${reports}">
                         <tr>
                             <td>[[${report.id}]]</td>
-                            <td>[[${report.reportType}]]</td>
+                            <td>[[${report.reportType.getLocaleName(loc)}]]</td>
                             <td>[[${report.companyName}]]</td>
                             <td>[[${report.companyId}]]</td>
                             <td>[[${report.city}]]</td>
                             <td>[[${#temporals.format(report.date, 'dd-MM-yyyy')}]]</td>
                             <td>[[${report.legalEntityType.getLocaleName(loc)}]]</td>
-                            <td>[[${report.currency}]]</td>
+                            <td>[[${report.currency.getLocaleName(loc)}]]</td>
                             <td>[[${report.currentAssets}]]</td>
                             <td>[[${report.nonCurrentAssets}]]</td>
                             <td>[[${report.totalAssets}]]</td>
@@ -97,7 +97,7 @@
                             <td>[[${report.nonCurrentLiabilities}]]</td>
                             <td>[[${report.totalLiabilities}]]</td>
                             <td>[[${report.equality}]]</td>
-                            <td>[[${report.reportStatus}]]</td>
+                            <td>[[${report.reportStatus.getLocaleName(loc)}]]</td>
                                 <span th:if="${report.editable}">
                                     <td>
                                         <a class="btn btn-outline-secondary" style="margin-right: 3px" th:href="@{/user/reports/{userID}/edit/{id}(userID=${report.user.id},id=${report.id})}">Edit</a>
