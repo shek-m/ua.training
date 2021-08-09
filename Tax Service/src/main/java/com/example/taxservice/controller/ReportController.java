@@ -8,6 +8,7 @@ import com.example.taxservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
@@ -31,7 +32,15 @@ public class ReportController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/user/new-report")
-    public ModelAndView addReport(@ModelAttribute("report") @Valid ReportDTO reportDto) {
+    public ModelAndView addReport(@ModelAttribute("report") @Valid ReportDTO reportDto,
+                                  BindingResult bindingResult, HttpServletRequest request, ModelAndView mov,
+                                SessionLocaleResolver slr) {
+        mov.setViewName("user/report_form");
+        mov.addObject("loc", slr.resolveLocale(request));
+
+        if (bindingResult.hasErrors()) {
+            return mov;
+        }
         try {
             Report addedReport = reportService.addNewReport(reportDto);
         } catch (DateTimeParseException ex) {
@@ -43,7 +52,7 @@ public class ReportController {
     }
 
     @PostMapping("/admin/checked")
-    public ModelAndView reviewReport(@ModelAttribute("report") @Valid Report report, ModelAndView mov) {
+    public ModelAndView reviewReport(@ModelAttribute("report") Report report, ModelAndView mov) {
         reportService.reviewReportByAdmin(report);
 
         log.info("{}", report);

@@ -67,18 +67,21 @@ public class UserController {
     }
 
     @GetMapping("/new-report")
-    public String addNewReport(Model model) {
+    public String addNewReport(Model model, HttpServletRequest request, SessionLocaleResolver slr) {
         model.addAttribute("report", new ReportDTO());
-        model.addAttribute("pageTitle", "Add new report");
+        model.addAttribute("pageTitle", "Add");
+        model.addAttribute("loc", slr.resolveLocale(request));
         return "user/report_form";
     }
 
     @GetMapping("/reports/{userId}/edit/{id}")
-    public String editReport(@PathVariable Long userId, @PathVariable Long id, Model model, RedirectAttributes ra) {
+    public String editReport(@PathVariable Long userId, @PathVariable Long id, Model model,
+                             RedirectAttributes ra, HttpServletRequest request, SessionLocaleResolver slr) {
         try {
             Report report = reportService.getById(id);
             model.addAttribute("report", reportService.mappingReportToDto(report));
-            model.addAttribute("pageTitle", "Edit report №" + userId);
+            model.addAttribute("pageTitle", "Edit");
+            model.addAttribute("loc", slr.resolveLocale(request));
             return "user/report_form";
 
         } catch (ReportNotFoundException ex) {

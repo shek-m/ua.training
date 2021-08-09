@@ -5,8 +5,7 @@ import com.example.taxservice.entity.enums.LegalEntityType;
 import com.example.taxservice.entity.enums.ReportType;
 import lombok.*;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 @Getter
 @Setter
@@ -17,7 +16,8 @@ import javax.validation.constraints.NotNull;
 public class ReportDTO {
 
     @NotNull
-    @NotEmpty
+    @NotEmpty(message = "{new.report.error.field}")
+    @Size(min = 2, max = 30, message = "{new.report.error.company.name}")
     private String companyName;
 
     private Long id;
@@ -26,38 +26,45 @@ public class ReportDTO {
 
     private boolean editable;
 
+    @NotNull(message = "{new.report.error.enum}")
     private ReportType reportType;
 
     @NotNull
+    @Positive(message = "{new.report.error.negative}")
+    @DecimalMax(value = Integer.MAX_VALUE + "", message = "{new.report.error.company.id}")
     private Integer companyId;
 
     @NotNull
-    @NotEmpty
+    @NotEmpty(message = "{new.report.error.city}")
     private String city;
 
     @NotNull
-    @NotEmpty
+    @NotEmpty(message = "{new.report.error.field}")
     private String date;
 
-    @NotNull
+    @NotNull(message = "{new.report.error.enum}")
     private LegalEntityType legalEntityType;
 
-    @NotNull
+    @NotNull(message = "{new.report.error.enum}")
     private Currency currency;
 
     @NotNull
+    @PositiveOrZero(message = "{new.report.error.negative}")
     private Long currentAssets;
 
     @NotNull
+    @PositiveOrZero(message = "{new.report.error.negative}")
     private Long nonCurrentAssets;
 
     @NotNull
+    @PositiveOrZero(message = "{new.report.error.negative}")
     private Long currentLiabilities;
 
     @NotNull
+    @PositiveOrZero(message = "{new.report.error.negative}")
     private Long nonCurrentLiabilities;
 
-
     @NotNull
+    @PositiveOrZero(message = "{new.report.error.negative}")
     private Long equality;
 }
