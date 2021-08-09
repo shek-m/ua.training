@@ -10,24 +10,24 @@
 <body>
 <nav class="navbar navbar-expand-xxl navbar-dark bg-success">
     <div class="container-fluid">
-        <a class="navbar-brand">Tax service</a>
+        <a class="navbar-brand">[[#{usermain.taxservice}]]</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link" aria-current="page" href="/user/home">Home</a>
-                <a class="nav-link" href="#">My reports</a>
-                <a class="nav-link" th:href="@{/logout}">Logout</a>
+                <a class="nav-link" aria-current="page" href="/user/home">[[#{usermain.home}]]</a>
+                <a class="nav-link" href="#">[[#{usermain.myreports}]]</a>
+                <a class="nav-link" th:href="@{/logout}">[[#{usermain.logout}]]</a>
             </div>
         </div>
     </div>
     <form class="d-inline-flex me-5" th:action="@{'/user/reports/' + ${userID}}" th:method="post">
         <select class="form-control-sm me-2" th:field="${statusDTO.reportStatus}" id="status">
-            <option value="">Filter by status</option>
+            <option value="">[[#{user.reportpage.filterstatus}]]</option>
             <option th:each="type : ${T(com.example.taxservice.entity.enums.ReportStatus).values()}"
                     th:value="${type}"
-                    th:text="${type}">type
+                    th:text="${type.getLocaleName(loc)}">
             </option>
         </select>
         <button class="btn btn-outline-light" type="submit">Ok</button>
@@ -36,11 +36,11 @@
 
     </select>
     <select id="slct" class="me-2">
-        <option>Sort by</option>
-        <option value="?sortby=date-d">Date ▼</option>
-        <option value="?sortby=date-a">Date ▲</option>
-        <option value="?sortby=type-d">Type ▼</option>
-        <option value="?sortby=type-a">Type ▲</option>
+        <option>[[#{user.reportpage.sortby}]]</option>
+        <option value="?sortby=date-d">[[#{user.reportpage.datedown}]]</option>
+        <option value="?sortby=date-a">[[#{user.reportpage.dateup}]]</option>
+        <option value="?sortby=type-d">[[#{user.reportpage.typedown}]]</option>
+        <option value="?sortby=type-a">[[#{user.reportpage.typeup}]]</option>
     </select>
 
     <div>
@@ -54,29 +54,29 @@
 </nav>
 
     <div class="container-fluid text-center">
-        <div><h1>List of reports</h1></div>
+        <div><h1>[[#{user.reportpage.list.title}]]</h1></div>
         <div>
-            <h4><a th:href="@{/user/new-report}">Add new report</a></h4>
+            <h4><a th:href="@{/user/new-report}">[[#{user.reportpage.list.new}]]</a></h4>
         <div>
             <table class="table table-bordered">
                 <thead class="table-light">
                     <tr>
-                        <th>ID</th>
-                        <th>Type</th>
-                        <th>Company Name</th>
-                        <th>Company ID</th>
-                        <th>City</th>
-                        <th>Date</th>
-                        <th>Legal Entity Type</th>
-                        <th>Currency</th>
-                        <th>Current Assets</th>
-                        <th>Non current Assets</th>
-                        <th>Total assets </th>
-                        <th>Current liabilities </th>
-                        <th>Non-Current liabilities </th>
-                        <th>Total liabilities </th>
-                        <th>Equality </th>
-                        <th>Status</th>
+                        <th>[[#{user.reportpage.list.id}]]</th>
+                        <th>[[#{user.reportpage.list.type}]]</th>
+                        <th>[[#{user.reportpage.list.company.name}]]</th>
+                        <th>[[#{user.reportpage.list.company.id}]]</th>
+                        <th>[[#{user.reportpage.list.city}]]</th>
+                        <th>[[#{user.reportpage.list.date}]]</th>
+                        <th>[[#{user.reportpage.list.company.type}]]</th>
+                        <th>[[#{user.reportpage.list.currency}]]</th>
+                        <th>[[#{user.reportpage.list.currassets}]]</th>
+                        <th>[[#{user.reportpage.list.noncurrassets}]]</th>
+                        <th>[[#{user.reportpage.list.totassets}]]</th>
+                        <th>[[#{user.reportpage.list.currliab}]]</th>
+                        <th>[[#{user.reportpage.list.noncurrliab}]]</th>
+                        <th>[[#{user.reportpage.list.totliab}]]</th>
+                        <th>[[#{user.reportpage.list.equal}]]</th>
+                        <th>[[#{user.reportpage.list.status}]]</th>
                     </tr>
                 </thead>
                 <tbody>
