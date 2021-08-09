@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping("/home")
-    public String userHomePage(Model model){
+    public String userHomePage(Model model) {
         return "user/userMain";
     }
 
@@ -42,13 +42,22 @@ public class UserController {
                                 Model model, HttpServletRequest request, SessionLocaleResolver slr) {
 
         List<Report> reports = reportService.listUserReports(id);
-            switch (sortBy) {
-                case "def" : break;
-                case "date-d" : reports = reportService.sortUserReportsByDateDesc(id); break;
-                case "date-a" : reports = reportService.sortUserReportsByDateAsc(id); break;
-                case "type-d" : reports = reportService.sortUserReportsByTypeDesc(id); break;
-                case "type-a" : reports = reportService.sortUserReportsByTypeAsc(id); break;
-            }
+        switch (sortBy) {
+            case "def":
+                break;
+            case "date-d":
+                reports = reportService.sortUserReportsByDateDesc(id);
+                break;
+            case "date-a":
+                reports = reportService.sortUserReportsByDateAsc(id);
+                break;
+            case "type-d":
+                reports = reportService.sortUserReportsByTypeDesc(id);
+                break;
+            case "type-a":
+                reports = reportService.sortUserReportsByTypeAsc(id);
+                break;
+        }
 
         model.addAttribute("loc", slr.resolveLocale(request));
         model.addAttribute("reports", reports);
@@ -72,7 +81,7 @@ public class UserController {
             model.addAttribute("pageTitle", "Edit report №" + userId);
             return "user/report_form";
 
-        } catch (ReportNotFoundException ex){
+        } catch (ReportNotFoundException ex) {
             log.error(ex.getMessage());
             ra.addFlashAttribute("message", ex.getMessage());
             return "redirect:/user/reports";
@@ -83,8 +92,4 @@ public class UserController {
     public Long getAuthUserId() {
         return userService.getUser().getId();
     }
-
-//    public Locale resolveLocale(LocaleResolver slr, HttpServletRequest request){
-//        return slr.resolveLocale(request);
-//    }
 }

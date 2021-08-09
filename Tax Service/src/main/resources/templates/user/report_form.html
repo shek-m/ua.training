@@ -68,9 +68,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="birth" class="form-label">Report date</label>
-                                    <input type="text" class="form-control" required id="birth" th:field="${report.date}"
-                                        aria-describedby="dataHelp" placeholder="20-01-2020">
-                                    <div id="dataHelp" class="form-text">Input the date using following format: dd-MM-yyyy</div>
+                                    <input type="date" class="form-control" required id="birth" th:field="${report.date}">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="type">Choose legal entity type</label>

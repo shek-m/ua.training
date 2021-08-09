@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.format.DateTimeParseException;
 
@@ -52,7 +54,8 @@ public class ReportController {
     }
 
     @PostMapping("/user/reports/{id}")
-    public ModelAndView filterByStatus(@PathVariable Long id, ReportStatusDTO dto, ModelAndView mov) {
+    public ModelAndView filterByStatus(@PathVariable Long id, ReportStatusDTO dto, ModelAndView mov,
+                                       HttpServletRequest request, SessionLocaleResolver slr) {
         mov.setViewName("user/reports");
         if (dto.getReportStatus() == null) {
             mov.addObject("reports", reportService.listUserReports(id));
@@ -60,6 +63,7 @@ public class ReportController {
             mov.addObject("reports", reportService.filterUserReportsByStatus(dto.getReportStatus(), id));
         }
         mov.addObject("statusDTO", new ReportStatusDTO());
+        mov.addObject("loc", slr.resolveLocale(request));
         return mov;
     }
 
