@@ -55,8 +55,8 @@
         <div>
             <div class="d-flex me-2">
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                    <a class="btn btn-outline-light" th:href="@{/admin/reports(lang='en')}" role="button">EN</a>
-                    <a class="btn btn-outline-light" th:href="@{/admin/reports(lang='uk')}" role="button">UK</a>
+                    <a class="btn btn-outline-light" th:href="@{'/admin/page/' + ${currentPage} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + '&lang=en'}" role="button">EN</a>
+                    <a class="btn btn-outline-light" th:href="@{'/admin/page/' + ${currentPage} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + '&lang=uk'}" role="button">UK</a>
                 </div>
             </div>
         </div>
@@ -66,17 +66,27 @@
     <div>
         <div>
             <table class="table table-bordered">
-                <div th:if="${message != null}" class="alert alert-info" role="alert">
-                    <div th:text="${message}"></div>
-                </div>
+<!--                <div th:if="${message != null}" class="alert alert-info" role="alert">-->
+<!--                    <div th:text="${message}"></div>-->
+<!--                </div>-->
                 <thead class="table-light">
                 <tr>
-                    <th>ID</th>
-                    <th>Type</th>
-                    <th>Company Name</th>
+                    <th>
+                        <a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">ID</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=reportType&sortDir=' + ${reverseSortDir}}">Report type</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=companyName&sortDir=' + ${reverseSortDir}}">Company name</a>
+                    </th>
                     <th>Company ID</th>
-                    <th>City</th>
-                    <th>Date</th>
+                    <th>
+                        <a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=city&sortDir=' + ${reverseSortDir}}">City</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=date&sortDir=' + ${reverseSortDir}}">Date</a>
+                    </th>
                     <th>Legal Entity Type</th>
                     <th>Currency</th>
                     <th>Current Assets</th>
@@ -124,13 +134,13 @@
         Total items: [[${totalItems}]].
         &nbsp; Pages:
         <span th:each="i: ${#numbers.sequence(1, totalPages)}">
-            <a th:if="${currentPage != i}" th:href="@{'/admin/page/' + ${i}}">[[${i}]]</a>
+            <a th:if="${currentPage != i}" th:href="@{'/admin/page/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
             <span th:unless="${currentPage != i}">[[${i}]]</span>
                 &nbsp;
         </span>
-        <a th:if="${currentPage > 1}" th:href="@{'/admin/page/' + ${currentPage - 1}}">Previous</a>
+        <a th:if="${currentPage > 1}" th:href="@{'/admin/page/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
         <span th:unless="${currentPage > 1}">Previous</span>
-        <a th:if="${currentPage < totalPages}" th:href="@{'/admin/page/' + ${currentPage + 1}}">Next</a>
+        <a th:if="${currentPage < totalPages}" th:href="@{'/admin/page/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
         <span th:unless="${currentPage < totalPages}">Next</span>
     </div>
 </div>

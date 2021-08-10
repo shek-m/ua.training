@@ -7,6 +7,7 @@ import com.example.taxservice.service.exceptions.ReportNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,17 +36,23 @@ public class AdminController {
 
     @GetMapping("/reports")
     public String getReportList(Model model) {
-        return viewPage(model, 1);
+        return viewPage(model, 1, "id","desc");
     }
 
     @GetMapping("/page/{pageNum}")
     public String viewPage(Model model,
-                           @PathVariable(name = "pageNum") int pageNum) {
-        Page<Report> page = reportService.getAllPagedReports(pageNum);
+                           @PathVariable(name = "pageNum") int pageNum,
+                           @Param("sortField") String sortField,
+                           @Param("sortDir") String sortDir) {
+        Page<Report> page = reportService.getAllPagedReports(pageNum, sortField, sortDir);
         List<Report> reports = page.getContent();
         model.addAttribute("currentPage", pageNum);
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
+
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
         model.addAttribute("reports", reports);
 
         return "admin/reports";
