@@ -42,6 +42,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(id).isPresent();
     }
 
+    public Long countAllRegisteredUsers() {
+        return userRepository.countByRole(Role.USER);
+    }
+
     public User registerNewAccountUser(UserDTO userDto) throws UserAlreadyExistException {
         try {
             return userRepository.save(User.builder()

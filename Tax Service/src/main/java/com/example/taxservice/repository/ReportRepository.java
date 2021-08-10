@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +29,8 @@ public interface ReportRepository extends CrudRepository<Report, Long> {
 
     List<Report> findByReportStatusAndUserId(ReportStatus statusVal, Long id);
 
+    List<Report> findByReportStatus(ReportStatus statusVal);
+
     List<Report> findByUserIdOrderByDateDesc(Long id);
 
     List<Report> findByUserIdOrderByDateAsc(Long id);
@@ -35,6 +38,12 @@ public interface ReportRepository extends CrudRepository<Report, Long> {
     List<Report> findByUserIdOrderByReportTypeDesc(Long id);
 
     List<Report> findByUserIdOrderByReportTypeAsc(Long id);
+
+    Long countByReportStatus(ReportStatus status);
+
+    long count();
+
+    Long countByDateBetween(LocalDate d1, LocalDate d2);
 
     List<Report> findByReportStatusAndUserIdOrderByDateDesc(ReportStatus statusVal, Long id);
 }

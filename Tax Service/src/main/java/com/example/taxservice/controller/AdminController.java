@@ -2,6 +2,7 @@ package com.example.taxservice.controller;
 
 import com.example.taxservice.dto.ReportFilterDTO;
 import com.example.taxservice.entity.Report;
+import com.example.taxservice.entity.enums.ReportStatus;
 import com.example.taxservice.service.ReportService;
 import com.example.taxservice.service.UserService;
 import com.example.taxservice.service.exceptions.ReportNotFoundException;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
 
@@ -82,6 +84,22 @@ public class AdminController {
     public String viewAllUsers(Model model){
         model.addAttribute("users", userService.loadAllRegisteredUsers());
         return "admin/users";
+    }
+
+    @GetMapping("/statistics")
+    public String viewStatistics(Model model){
+        model.addAttribute("numberOfUsers", userService.countAllRegisteredUsers());
+        model.addAttribute("numberOfReports", reportService.countAllReports());
+        model.addAttribute("submReps", reportService.countReportsByStatus(ReportStatus.SUBMITTED));
+        model.addAttribute("denReps", reportService.countReportsByStatus(ReportStatus.DENIED));
+        model.addAttribute("procReps", reportService.countReportsByStatus(ReportStatus.PROCESSING));
+        model.addAttribute("monthReports",
+                reportService.countAllReportsDuringPeriod(LocalDate.now().minusMonths(1), LocalDate.now()));
+        model.addAttribute("yearReports",
+                reportService.countAllReportsDuringPeriod(LocalDate.now().minusYears(1), LocalDate.now()));
+        model.addAttribute("dayReports",
+                reportService.countAllReportsDuringPeriod(LocalDate.now().minusDays(1), LocalDate.now()));
+        return "admin/statistics";
     }
 
     @ModelAttribute("loc")

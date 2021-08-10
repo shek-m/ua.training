@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -52,6 +53,18 @@ public class ReportService {
 
     public List<Report> listUserReports(@NonNull Long id) {
         return reportRepository.findByUserId(id);
+    }
+
+    public Long countReportsByStatus(ReportStatus stat){
+        return reportRepository.countByReportStatus(stat);
+    }
+
+    public Long countAllReports(){
+        return reportRepository.count();
+    }
+
+    public Long countAllReportsDuringPeriod(LocalDate d1, LocalDate d2){
+        return reportRepository.countByDateBetween(d1, d2);
     }
 
     public Report getById(@NonNull Long id) throws ReportNotFoundException {
