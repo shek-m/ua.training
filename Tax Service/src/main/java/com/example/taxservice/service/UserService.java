@@ -5,7 +5,6 @@ import com.example.taxservice.entity.enums.Role;
 import com.example.taxservice.entity.User;
 import com.example.taxservice.repository.UserRepository;
 import com.example.taxservice.service.exceptions.UserAlreadyExistException;
-import com.example.taxservice.validation.DataValidator;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,15 +38,13 @@ public class UserService implements UserDetailsService {
             throw new UserAlreadyExistException("There is an account with current email address or username.");
         }
 
-        DataValidator validator = new DataValidator();
-
         return userRepository.save(User.builder()
                                 .name(userDto.getName())
                                 .surname(userDto.getSurname())
                                 .email(userDto.getEmail())
                                 .role(Role.USER)
                                 .username(userDto.getUsername())
-                                .date(validator.validateDate(userDto.getDate()))
+                                .date(userDto.getDate())
                                 .password(new BCryptPasswordEncoder().encode(userDto.getPassword()))
                                 .build());
     }

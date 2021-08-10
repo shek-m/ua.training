@@ -6,6 +6,7 @@ import com.example.taxservice.entity.enums.LegalEntityType;
 import com.example.taxservice.entity.enums.ReportStatus;
 import com.example.taxservice.entity.enums.ReportType;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -40,7 +41,8 @@ public class Report {
     @Column(nullable = false)
     private String city;
 
-    @Column(nullable = false, columnDefinition = "DATE")
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @Column(nullable = false)

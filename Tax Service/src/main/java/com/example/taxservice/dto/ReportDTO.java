@@ -4,8 +4,10 @@ import com.example.taxservice.entity.enums.Currency;
 import com.example.taxservice.entity.enums.LegalEntityType;
 import com.example.taxservice.entity.enums.ReportType;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -38,9 +40,15 @@ public class ReportDTO {
     @NotEmpty(message = "{new.report.error.city}")
     private String city;
 
-    @NotNull
-    @NotEmpty(message = "{new.report.error.field}")
-    private String date;
+//    @NotNull
+//    @NotEmpty(message = "{new.report.error.field}")
+//    private String date;
+
+    @NotNull(message = "{new.report.error.field}")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @PastOrPresent(message = "{report.validation.date}")
+    private LocalDate date;
+
 
     @NotNull(message = "{new.report.error.enum}")
     private LegalEntityType legalEntityType;

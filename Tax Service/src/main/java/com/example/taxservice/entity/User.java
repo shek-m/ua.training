@@ -2,6 +2,7 @@ package com.example.taxservice.entity;
 
 import com.example.taxservice.entity.enums.Role;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -29,7 +30,8 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String surname;
 
-    @Column(columnDefinition = "DATE")
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @Column(nullable = false, unique = true)

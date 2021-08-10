@@ -5,12 +5,10 @@ import com.example.taxservice.entity.Report;
 import com.example.taxservice.entity.enums.ReportStatus;
 import com.example.taxservice.repository.ReportRepository;
 import com.example.taxservice.service.exceptions.ReportNotFoundException;
-import com.example.taxservice.validation.DataValidator;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
@@ -65,15 +63,14 @@ public class ReportService {
         return reportRepository.findByUserIdOrderByReportTypeAsc(id);
     }
 
-    public Report addNewReport(ReportDTO reportDTO) throws IllegalArgumentException, DateTimeParseException {
-        DataValidator validator = new DataValidator();
-        Report report = Report.builder()
+    public Report addNewReport(ReportDTO reportDTO) {
+        return reportRepository.save(Report.builder()
                 .user(userService.getUser())
                 .id(reportDTO.getId())
                 .companyName(reportDTO.getCompanyName())
                 .companyId(reportDTO.getCompanyId())
                 .city(reportDTO.getCity())
-                .date(validator.validateDate(reportDTO.getDate()))
+                .date(reportDTO.getDate())
                 .legalEntityType(reportDTO.getLegalEntityType())
                 .currency(reportDTO.getCurrency())
                 .currentAssets(reportDTO.getCurrentAssets())
@@ -87,27 +84,26 @@ public class ReportService {
                 .reportType(reportDTO.getReportType())
                 .comment(reportDTO.getComment())
                 .editable(false)
-                .build();
-        return reportRepository.save(report);
+                .build());
     }
 
-    public ReportDTO mappingReportToDto(Report report) {
-        return ReportDTO.builder()
-                        .id(report.getId())
-                        .companyName(report.getCompanyName())
-                        .companyId(report.getCompanyId())
-                        .city(report.getCity())
-                        .date(report.getDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
-                        .legalEntityType(report.getLegalEntityType())
-                        .currency(report.getCurrency())
-                        .currentAssets(report.getCurrentAssets())
-                        .nonCurrentAssets(report.getNonCurrentAssets())
-                        .currentLiabilities(report.getCurrentLiabilities())
-                        .nonCurrentLiabilities(report.getNonCurrentLiabilities())
-                        .equality(report.getEquality())
-                        .comment(report.getComment())
-                        .editable(report.getEditable())
-                        .reportType(report.getReportType())
-                        .build();
-    }
+//    public ReportDTO mappingReportToDto(Report report) {
+//        return ReportDTO.builder()
+//                        .id(report.getId())
+//                        .companyName(report.getCompanyName())
+//                        .companyId(report.getCompanyId())
+//                        .city(report.getCity())
+//                        .date(report.getDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
+//                        .legalEntityType(report.getLegalEntityType())
+//                        .currency(report.getCurrency())
+//                        .currentAssets(report.getCurrentAssets())
+//                        .nonCurrentAssets(report.getNonCurrentAssets())
+//                        .currentLiabilities(report.getCurrentLiabilities())
+//                        .nonCurrentLiabilities(report.getNonCurrentLiabilities())
+//                        .equality(report.getEquality())
+//                        .comment(report.getComment())
+//                        .editable(report.getEditable())
+//                        .reportType(report.getReportType())
+//                        .build();
+//    }
 }

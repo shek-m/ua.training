@@ -79,7 +79,7 @@ public class UserController {
                              RedirectAttributes ra, HttpServletRequest request, SessionLocaleResolver slr) {
         try {
             Report report = reportService.getById(id);
-            model.addAttribute("report", reportService.mappingReportToDto(report));
+            model.addAttribute("report", report);
             model.addAttribute("pageTitle", "Edit");
             model.addAttribute("loc", slr.resolveLocale(request));
             return "user/report_form";

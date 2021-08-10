@@ -15,7 +15,6 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.time.format.DateTimeParseException;
 
 @Slf4j
 @RestController
@@ -41,17 +40,14 @@ public class ReportController {
         if (bindingResult.hasErrors()) {
             return mov;
         }
-        try {
-            Report addedReport = reportService.addNewReport(reportDto);
-        } catch (DateTimeParseException ex) {
-            return new ModelAndView("user/report_form", "message",
-                    "Input date format is not appropriate.");
-        }
+
+        Report addedReport = reportService.addNewReport(reportDto);
+
         log.info("{}", reportDto);
         return new ModelAndView("successReportAdded");
     }
 
-    @PostMapping("/admin/checked")
+    @PostMapping("/admin/reports")
     public ModelAndView reviewReport(@ModelAttribute("report") Report report, ModelAndView mov) {
         reportService.reviewReportByAdmin(report);
 

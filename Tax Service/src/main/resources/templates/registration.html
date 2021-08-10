@@ -23,9 +23,9 @@
                     <div th:if="${userExistsEx != null}" class="alert alert-danger" role="alert">
                         <div th:text="#{register.userExistsEx}"></div>
                     </div>
-                    <div th:if="${wrongDateEx != null}" class="alert alert-danger" role="alert">
-                        <div th:text="#{register.wrongDateEx}"></div>
-                    </div>
+<!--                    <div th:if="${wrongDateEx != null}" class="alert alert-danger" role="alert">-->
+<!--                        <div th:text="#{register.wrongDateEx}"></div>-->
+<!--                    </div>-->
 
                     <form name="f" th:action="@{/registration}" method="post" th:object="${user}">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -42,7 +42,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="date" class="form-label">[[#{register.birth}]]</label>
-                            <input type="date" class="form-control" required id="date" th:field="${user.date}">
+                            <input type="date" min="1900-01-01" class="form-control" required id="date" th:field="${user.date}">
                             <div style="color: red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></div>
                         </div>
                         <div class="mb-3">

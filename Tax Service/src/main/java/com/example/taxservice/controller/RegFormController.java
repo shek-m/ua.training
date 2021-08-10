@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.time.DateTimeException;
 
 @Slf4j
 @RestController
@@ -38,11 +37,8 @@ public class RegFormController {
             User registered = userservice.registerNewAccountUser(userDto);
         } catch (UserAlreadyExistException ex) {
             mov.addObject("userExistsEx", "");
-            return mov;
-        } catch (DateTimeException ex) {
-            mov.addObject("wrongDateEx", "");
-            return mov;
-        }
+            return mov;}
+
 
         log.info("{}", userDto);
 

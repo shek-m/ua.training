@@ -1,11 +1,10 @@
 package com.example.taxservice.dto;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -26,7 +25,9 @@ public class UserDTO {
     private String surname;
 
     @NotNull
-    private String date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past(message = "{register.validation.date}")
+    private LocalDate date;
 
     @NotNull
     @NotEmpty

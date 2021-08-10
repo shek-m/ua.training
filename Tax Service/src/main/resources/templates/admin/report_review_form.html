@@ -31,12 +31,12 @@
 <!--                    <div th:if="${message != null}" class="alert alert-danger" role="alert">-->
 <!--                        <div th:text="${message}"></div>-->
 <!--                    </div>-->
-                    <form th:action="@{/admin/checked}" th:method="post">
+                    <form th:action="@{/admin/reports}" th:method="post" th:object="${report}">
                         <input type="hidden" th:field="${report.id}">
                         <input type="hidden" th:field="${report.user}">
                         <input type="hidden" th:field="${report.totalAssets}">
                         <input type="hidden" th:field="${report.totalLiabilities}">
-                        <input type="hidden" th:field="${report.date}">
+<!--                        <input type="hidden" th:field="${report.date}">-->
                         <div class="mb-3">
                             <label for="company_name" class="form-label">Company name</label>
                             <input type="text" class="form-control" required id="company_name" th:field="${report.companyName}" readonly>
@@ -50,8 +50,8 @@
                             <input type="text" class="form-control" required id="city" th:field="${report.city}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="birth" class="form-label">Report date</label>
-                            <p type="text" class="form-control" required id="birth" th:text="${#temporals.format(report.date, 'dd-MM-yyyy')}" readonly></p>
+                            <label for="birth" class="form-label">[[#{new.report.date}]]</label>
+                            <input type="date" class="form-control" readonly id="birth" th:field="*{date}">
                         </div>
                         <div class="form-group mb-3">
                             <label for="reptype">Report type</label>
