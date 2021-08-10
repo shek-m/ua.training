@@ -86,24 +86,4 @@ public class ReportService {
                 .editable(false)
                 .build());
     }
-
-//    public ReportDTO mappingReportToDto(Report report) {
-//        return ReportDTO.builder()
-//                        .id(report.getId())
-//                        .companyName(report.getCompanyName())
-//                        .companyId(report.getCompanyId())
-//                        .city(report.getCity())
-//                        .date(report.getDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")))
-//                        .legalEntityType(report.getLegalEntityType())
-//                        .currency(report.getCurrency())
-//                        .currentAssets(report.getCurrentAssets())
-//                        .nonCurrentAssets(report.getNonCurrentAssets())
-//                        .currentLiabilities(report.getCurrentLiabilities())
-//                        .nonCurrentLiabilities(report.getNonCurrentLiabilities())
-//                        .equality(report.getEquality())
-//                        .comment(report.getComment())
-//                        .editable(report.getEditable())
-//                        .reportType(report.getReportType())
-//                        .build();
-//    }
 }

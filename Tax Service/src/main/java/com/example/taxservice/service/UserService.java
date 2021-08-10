@@ -1,13 +1,14 @@
 package com.example.taxservice.service;
 
 import com.example.taxservice.dto.UserDTO;
-import com.example.taxservice.entity.enums.Role;
 import com.example.taxservice.entity.User;
+import com.example.taxservice.entity.enums.Role;
 import com.example.taxservice.repository.UserRepository;
 import com.example.taxservice.service.exceptions.UserAlreadyExistException;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,26 +35,19 @@ public class UserService implements UserDetailsService {
     }
 
     public User registerNewAccountUser(UserDTO userDto) throws UserAlreadyExistException {
-        if (emailExists(userDto.getEmail()) || usernameExists(userDto.getUsername())){
-            throw new UserAlreadyExistException("There is an account with current email address or username.");
+        try {
+            return userRepository.save(User.builder()
+                    .name(userDto.getName())
+                    .surname(userDto.getSurname())
+                    .email(userDto.getEmail())
+                    .role(Role.USER)
+                    .username(userDto.getUsername())
+                    .date(userDto.getDate())
+                    .password(new BCryptPasswordEncoder().encode(userDto.getPassword()))
+                    .build());
+        } catch (DataIntegrityViolationException ex){
+            throw new UserAlreadyExistException(ex.getMessage());
         }
-
-        return userRepository.save(User.builder()
-                                .name(userDto.getName())
-                                .surname(userDto.getSurname())
-                                .email(userDto.getEmail())
-                                .role(Role.USER)
-                                .username(userDto.getUsername())
-                                .date(userDto.getDate())
-                                .password(new BCryptPasswordEncoder().encode(userDto.getPassword()))
-                                .build());
-    }
-
-    private boolean emailExists(String email) {
-        return userRepository.findByEmail(email).isPresent();
-    }
-    private boolean usernameExists(String username) {
-        return userRepository.findByUsername(username).isPresent();
     }
 
     public User getUser() {

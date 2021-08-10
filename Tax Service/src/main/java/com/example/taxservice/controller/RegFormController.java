@@ -39,7 +39,6 @@ public class RegFormController {
             mov.addObject("userExistsEx", "");
             return mov;}
 
-
         log.info("{}", userDto);
 
         return new ModelAndView("successRegister", "user", userDto);
