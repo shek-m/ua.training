@@ -5,7 +5,7 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>[[${pageTitle}]]</title>
+    <title>[[#{admin.reportpage.review}]]</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-xxl navbar-dark bg-danger">
@@ -18,7 +18,7 @@
             <div class="navbar-nav">
                 <a class="nav-link" aria-current="page" th:href="@{/admin/home}">[[#{usermain.home}]]</a>
                 <a class="nav-link" th:href="@{/admin/reports}">[[#{adminMain.allbutton}]]</a>
-                <a class="nav-link" th:href="@{#}">[[#{adminMain.statistics}]]</a>
+                <a class="nav-link" th:href="@{/admin/statistics}">[[#{adminMain.statistics}]]</a>
                 <a class="nav-link" th:href="@{/admin/users}">[[#{adminMain.users}]]</a>
                 <a class="nav-link" th:href="@{/logout}">[[#{usermain.logout}]]</a>
             </div>
@@ -50,13 +50,13 @@
 <div class="container">
     <div class="row">
         <div class="d-flex justify-content-center">
-            <h2>[[${pageTitle}]]</h2>
+            <h2>[[#{admin.reportpage.review.report}]]</h2>
         </div>
 
         <div class="d-lg-block justify-content-center">
             <div class="card" style="margin-top: 45px">
                 <div class="text-center">
-                    <h5 class="card-header" th:text="'Report №' + ${report.id} "></h5>
+                    <h5 class="card-header" th:text="#{admin.reportpage.review.numb} + ${report.id} "></h5>
                 </div>
                 <div class="card-body">
                     <p class="card-text">
@@ -65,16 +65,19 @@
                         <input type="hidden" th:field="${report.user}">
                         <input type="hidden" th:field="${report.totalAssets}">
                         <input type="hidden" th:field="${report.totalLiabilities}">
+                        <input type="hidden" th:field="${report.legalEntityType}">
+                        <input type="hidden" th:field="${report.currency}">
+                        <input type="hidden" th:field="${report.reportType}">
                         <div class="mb-3">
-                            <label for="company_name" class="form-label">Company name</label>
+                            <label for="company_name" class="form-label">[[#{user.reportpage.list.company.name}]]</label>
                             <input type="text" class="form-control" required id="company_name" th:field="${report.companyName}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="company_id" class="form-label">EDRPOU</label>
+                            <label for="company_id" class="form-label">[[#{user.reportpage.list.company.id}]]</label>
                             <input type="number" class="form-control" required id="company_id" th:field="${report.companyId}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="city" class="form-label">City</label>
+                            <label for="city" class="form-label">[[#{user.reportpage.list.city}]]</label>
                             <input type="text" class="form-control" required id="city" th:field="${report.city}" readonly>
                         </div>
                         <div class="mb-3">
@@ -82,48 +85,48 @@
                             <input type="date" class="form-control" readonly id="birth" th:field="*{date}">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="reptype">Report type</label>
-                            <input type="text" class="form-control" required id="reptype" th:field="${report.reportType}" readonly>
+                            <label for="reptype">[[#{user.reportpage.list.type}]]</label>
+                            <strong><p required id="reptype"  th:text="${report.reportType.getLocaleName(loc)}" readonly></p></strong>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="type">Legal entity type</label>
-                            <input type="text" class="form-control" required id="type" th:field="${report.legalEntityType}" readonly>
+                            <label for="type">[[#{user.reportpage.list.company.type}]]</label>
+                            <strong><p required id="type" th:text="${report.legalEntityType.getLocaleName(loc)}" readonly></p></strong>
                         </div>
                         <div class="form-group mb-3">
-                            <label for="curr">Currency</label>
-                            <input type="text" class="form-control" required id="curr" th:field="${report.currency}" readonly>
+                            <label for="curr">[[#{user.reportpage.list.currency}]]</label>
+                            <strong><p required id="curr" th:text="${report.currency.getLocaleName(loc)}" readonly></p></strong>
                         </div>
                         <div class="mb-3">
-                            <label for="cur-assets" class="form-label">Current assets</label>
+                            <label for="cur-assets" class="form-label">[[#{user.reportpage.list.currassets}]]</label>
                             <input type="number" class="form-control" required id="cur-assets" th:field="${report.currentAssets}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="non-cur-assets" class="form-label">Non-current assets</label>
+                            <label for="non-cur-assets" class="form-label">[[#{user.reportpage.list.noncurrassets}]]</label>
                             <input type="number" class="form-control" required id="non-cur-assets" th:field="${report.nonCurrentAssets}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="cur-liab" class="form-label">Current liabilities</label>
+                            <label for="cur-liab" class="form-label">[[#{user.reportpage.list.currliab}]]</label>
                             <input type="number" class="form-control" required id="cur-liab" th:field="${report.currentLiabilities}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="non-cur-liab" class="form-label">Non-current liabilities</label>
+                            <label for="non-cur-liab" class="form-label">[[#{user.reportpage.list.noncurrliab}]]</label>
                             <input type="number" class="form-control" required id="non-cur-liab" th:field="${report.nonCurrentLiabilities}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="equality" class="form-label">Equality</label>
+                            <label for="equality" class="form-label">[[#{user.reportpage.list.equal}]]</label>
                             <input type="number" class="form-control" required id="equality" th:field="${report.equality}" readonly>
                         </div>
                         <div class="mb-3">
-                            <label for="comment" class="form-label">Comment</label>
+                            <label for="comment" class="form-label">[[#{user.reportpage.list.comment}]]</label>
                             <input type="text" class="form-control" required id="comment" th:field="${report.comment}">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="repstat">Select status</label>
+                            <label for="repstat">[[#{admin.select.status}]]</label>
                             <select class="form-control selectpicker" th:field="${report.reportStatus}" id="repstat" >
-                                <option value="">Nothing selected</option>
+                                <option value="">[[#{new.report.nothing.selected}]]</option>
                                 <option th:each="type : ${T(com.example.taxservice.entity.enums.ReportStatus).values()}"
                                         th:value="${type}"
-                                        th:text="${type}">type
+                                        th:text="${type.getLocaleName(loc)}">type
                                 </option>
                             </select>
                         </div>
@@ -131,13 +134,13 @@
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" th:field="${report.editable}" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
-                                    Set editable
+                                    [[#{admin.set.editable}]]
                                 </label>
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary m-2">Submit</button>
-                            <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Cancel</button>
+                            <button type="submit" class="btn btn-primary m-2">[[#{new.report.submit}]]</button>
+                            <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">[[#{new.report.cancel}]]</button>
                         </div>
                     </form>
                 </div>

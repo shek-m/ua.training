@@ -4,7 +4,7 @@
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Success!</title>
+    <title>[[#{success.title}]]</title>
 </head>
 <body>
 <div class="container">
@@ -16,10 +16,10 @@
             </div>
         </div>
         <div class="d-flex justify-content-center" style="margin-top: 30px">
-            <h1>Your report have been sent to inspector.</h1>
+            <h1>[[#{success.report}]]</h1>
         </div>
         <div class="d-flex justify-content-center" style="margin-top: 15px">
-            <a class="btn btn-outline-success" th:href="@{'/user/reports/' + ${userID}(sortby=def)}" role="button">To my reports</a>
+            <a class="btn btn-outline-success" th:href="@{'/user/reports/' + ${userID}(sortby=def)}" role="button">[[#{success.back}]]</a>
         </div>
     </div>
 </div>
