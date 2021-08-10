@@ -3,11 +3,13 @@ package com.example.taxservice.controller;
 import com.example.taxservice.dto.ReportDTO;
 import com.example.taxservice.dto.ReportStatusDTO;
 import com.example.taxservice.entity.Report;
+import com.example.taxservice.entity.User;
 import com.example.taxservice.service.ReportService;
 import com.example.taxservice.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,7 +75,7 @@ public class ReportController {
     }
 
     @ModelAttribute(name = "userID")
-    public Long getAuthUserId() {
-        return userService.getUser().getId();
+    public Long getAuthUserId(@AuthenticationPrincipal User user) {
+        return user.getId();
     }
 }

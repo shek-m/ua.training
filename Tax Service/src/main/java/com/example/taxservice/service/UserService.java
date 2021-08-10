@@ -9,8 +9,6 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -48,10 +46,5 @@ public class UserService implements UserDetailsService {
         } catch (DataIntegrityViolationException ex){
             throw new UserAlreadyExistException(ex.getMessage());
         }
-    }
-
-    public User getUser() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return (User)authentication.getPrincipal();
     }
 }

@@ -2,11 +2,13 @@ package com.example.taxservice.service;
 
 import com.example.taxservice.dto.ReportDTO;
 import com.example.taxservice.entity.Report;
+import com.example.taxservice.entity.User;
 import com.example.taxservice.entity.enums.ReportStatus;
 import com.example.taxservice.repository.ReportRepository;
 import com.example.taxservice.service.exceptions.ReportNotFoundException;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeParseException;
@@ -65,7 +67,7 @@ public class ReportService {
 
     public Report addNewReport(ReportDTO reportDTO) {
         return reportRepository.save(Report.builder()
-                .user(userService.getUser())
+                .user(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()))
                 .id(reportDTO.getId())
                 .companyName(reportDTO.getCompanyName())
                 .companyId(reportDTO.getCompanyId())
