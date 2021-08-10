@@ -120,6 +120,19 @@
             </table>
         </div>
     </div>
+    <div>
+        Total items: [[${totalItems}]].
+        &nbsp; Pages:
+        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+            <a th:if="${currentPage != i}" th:href="@{'/admin/page/' + ${i}}">[[${i}]]</a>
+            <span th:unless="${currentPage != i}">[[${i}]]</span>
+                &nbsp;
+        </span>
+        <a th:if="${currentPage > 1}" th:href="@{'/admin/page/' + ${currentPage - 1}}">Previous</a>
+        <span th:unless="${currentPage > 1}">Previous</span>
+        <a th:if="${currentPage < totalPages}" th:href="@{'/admin/page/' + ${currentPage + 1}}">Next</a>
+        <span th:unless="${currentPage < totalPages}">Next</span>
+    </div>
 </div>
 </body>
 </html>

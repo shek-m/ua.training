@@ -8,6 +8,9 @@ import com.example.taxservice.repository.ReportRepository;
 import com.example.taxservice.service.exceptions.ReportNotFoundException;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +29,14 @@ public class ReportService {
         this.userService = userService;
     }
 
-    public List<Report> listAllReports(){
-        return (List<Report>) reportRepository.findAll();
+//    public List<Report> listAllReports(){
+//        return (List<Report>) reportRepository.findAll();
+//    }
+
+    public Page<Report> getAllPagedReports(int pageNum) {
+        int pageSize = 5;
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+        return reportRepository.findAll(pageable);
     }
 
     public List<Report> listUserReports(@NonNull Long id) {

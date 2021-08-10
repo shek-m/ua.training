@@ -49,14 +49,10 @@ public class ReportController {
         return new ModelAndView("successReportAdded");
     }
 
-    @PostMapping("/admin/reports")
+    @PostMapping("/admin/reviewed")
     public ModelAndView reviewReport(@ModelAttribute("report") Report report, ModelAndView mov) {
         reportService.reviewReportByAdmin(report);
-
-        log.info("{}", report);
-        mov.setViewName("admin/reports");
-        mov.addObject("message", "Report was reviewed");
-        mov.addObject("reports", reportService.listAllReports());
+        mov.setViewName("successReportReviewed");
         return mov;
     }
 
