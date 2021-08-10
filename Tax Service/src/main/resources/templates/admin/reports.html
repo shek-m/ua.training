@@ -23,35 +23,19 @@
             </div>
         </div>
     </div>
-<!--    <form class="d-inline-flex me-5" th:action="@{'/user/reports/' + ${userID}}" th:method="post">-->
-<!--        <select class="form-control-sm me-2" th:field="${statusDTO.reportStatus}" id="status">-->
-<!--            <option value="">[[#{user.reportpage.filterstatus}]]</option>-->
-<!--            <option th:each="type : ${T(com.example.taxservice.entity.enums.ReportStatus).values()}"-->
-<!--                    th:value="${type}"-->
-<!--                    th:text="${type.getLocaleName(loc)}">-->
-<!--            </option>-->
-<!--        </select>-->
-<!--        <button class="btn btn-outline-light" type="submit">Ok</button>-->
-<!--    </form>-->
+    <form class="d-inline-flex me-5" th:action="@{/admin/page/{id}(id=${currentPage})}" th:method="post" th:object="${dto}">
+        <select class="form-control-sm me-2" th:field="*{reportType}" id="status">
+            <option value="">[[#{user.reportpage.filterstatus}]]</option>
+            <option th:each="type : ${T(com.example.taxservice.entity.enums.ReportType).values()}"
+                    th:value="${type}"
+                    th:text="${type.getLocaleName(loc)}">
+            </option>
+        </select>
+        &nbsp;
+        <input type="number" placeholder="Username" th:field="*{userid}">
+        <button class="btn btn-outline-light" type="submit">Ok</button>
+    </form>
 
-
-<!--    </select>-->
-<!--    <select id="slct" class="me-2">-->
-<!--        <option>[[#{user.reportpage.sortby}]]</option>-->
-<!--        <option value="?sortby=date-d">[[#{user.reportpage.datedown}]]</option>-->
-<!--        <option value="?sortby=date-a">[[#{user.reportpage.dateup}]]</option>-->
-<!--        <option value="?sortby=type-d">[[#{user.reportpage.typedown}]]</option>-->
-<!--        <option value="?sortby=type-a">[[#{user.reportpage.typeup}]]</option>-->
-<!--    </select>-->
-
-<!--    <div>-->
-<!--        <div class="d-flex me-2">-->
-<!--            <div class="btn-group" role="group" aria-label="Basic outlined example">-->
-<!--                <a class="btn btn-outline-light" th:href="@{'/user/reports/' + ${userID}(sortby=${sortBy}, lang='en')}" role="button">EN</a>-->
-<!--                <a class="btn btn-outline-light" th:href="@{'/user/reports/' + ${userID}(sortby=${sortBy}, lang='uk')}" role="button">UK</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
         <div>
             <div class="d-flex me-2">
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -66,9 +50,6 @@
     <div>
         <div>
             <table class="table table-bordered">
-<!--                <div th:if="${message != null}" class="alert alert-info" role="alert">-->
-<!--                    <div th:text="${message}"></div>-->
-<!--                </div>-->
                 <thead class="table-light">
                 <tr>
                     <th>
@@ -120,7 +101,6 @@
                         <td>[[${report.equality}]]</td>
                         <td>[[${report.reportStatus}]]</td>
                         <td>[[${report.comment}]]</td>
-                        <!--                            <td><a class="" </td>-->
                         <td>
                             <a class="btn btn-outline-dark" style=" margin-right: 3px" th:href="@{/admin/reports/{id}(id=${report.id})}">Review</a>
                         </td>

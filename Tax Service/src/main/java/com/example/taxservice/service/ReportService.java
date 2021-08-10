@@ -4,6 +4,7 @@ import com.example.taxservice.dto.ReportDTO;
 import com.example.taxservice.entity.Report;
 import com.example.taxservice.entity.User;
 import com.example.taxservice.entity.enums.ReportStatus;
+import com.example.taxservice.entity.enums.ReportType;
 import com.example.taxservice.repository.ReportRepository;
 import com.example.taxservice.service.exceptions.ReportNotFoundException;
 import lombok.NonNull;
@@ -35,6 +36,18 @@ public class ReportService {
                 sortDir.equals("asc") ? Sort.by(sortField).ascending()
                 : Sort.by(sortField).descending());
         return reportRepository.findAll(pageable);
+    }
+
+    public Page<Report> getFilteredPagedReports(int pageNum, String sortField, String sortDir, ReportType type, Long userId) {
+        int pageSize = 5;
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize,
+                sortDir.equals("asc") ? Sort.by(sortField).ascending()
+                        : Sort.by(sortField).descending());
+
+        return (type == null) ? (userId == null || !userService.isUserPresent(userId)) ? reportRepository.findAll(pageable)
+                : reportRepository.findByUserId(userId, pageable) : (userId == null || !userService.isUserPresent(userId))
+                ? reportRepository.findByReportType(type, pageable)
+                : reportRepository.findByReportTypeAndUserId(type, userId, pageable);
     }
 
     public List<Report> listUserReports(@NonNull Long id) {

@@ -32,6 +32,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User \"" + username + "\" is not registered"));
     }
 
+    public boolean isUserPresent(Long id) {
+        return userRepository.findById(id).isPresent();
+    }
+
     public User registerNewAccountUser(UserDTO userDto) throws UserAlreadyExistException {
         try {
             return userRepository.save(User.builder()

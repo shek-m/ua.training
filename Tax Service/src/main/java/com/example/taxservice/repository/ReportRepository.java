@@ -2,6 +2,7 @@ package com.example.taxservice.repository;
 
 import com.example.taxservice.entity.Report;
 import com.example.taxservice.entity.enums.ReportStatus;
+import com.example.taxservice.entity.enums.ReportType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
@@ -14,7 +15,13 @@ import java.util.Optional;
 public interface ReportRepository extends CrudRepository<Report, Long> {
     List<Report> findByUserId(Long id);
 
+    Page<Report> findByUserId(Long id, Pageable pageable);
+
     Page<Report> findAll(Pageable pageable);
+
+    Page<Report> findByReportTypeAndUserId(ReportType type, Long id, Pageable pageable);
+
+    Page<Report> findByReportType(ReportType type, Pageable pageable);
 
     @Override
     Optional<Report> findById(Long id);

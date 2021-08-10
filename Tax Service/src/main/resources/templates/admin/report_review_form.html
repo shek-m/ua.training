@@ -28,15 +28,11 @@
                 </div>
                 <div class="card-body">
                     <p class="card-text">
-<!--                    <div th:if="${message != null}" class="alert alert-danger" role="alert">-->
-<!--                        <div th:text="${message}"></div>-->
-<!--                    </div>-->
                     <form th:action="@{/admin/reviewed}" th:method="post" th:object="${report}">
                         <input type="hidden" th:field="${report.id}">
                         <input type="hidden" th:field="${report.user}">
                         <input type="hidden" th:field="${report.totalAssets}">
                         <input type="hidden" th:field="${report.totalLiabilities}">
-<!--                        <input type="hidden" th:field="${report.date}">-->
                         <div class="mb-3">
                             <label for="company_name" class="form-label">Company name</label>
                             <input type="text" class="form-control" required id="company_name" th:field="${report.companyName}" readonly>
@@ -118,7 +114,6 @@
     </div>
 </div>
 
-<!--</div>-->
 
 </body>
 <script type="text/javascript">

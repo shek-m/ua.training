@@ -2,7 +2,7 @@ package com.example.taxservice.controller;
 
 
 import com.example.taxservice.dto.ReportDTO;
-import com.example.taxservice.dto.ReportStatusDTO;
+import com.example.taxservice.dto.ReportFilterDTO;
 import com.example.taxservice.entity.Report;
 import com.example.taxservice.entity.User;
 import com.example.taxservice.service.ReportService;
@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Locale;
 
 @Slf4j
 @Controller
@@ -41,7 +42,7 @@ public class UserController {
     @GetMapping("/reports/{id}")
     public String getReportList(@PathVariable Long id,
                                 @RequestParam(name = "sortby", required = true) String sortBy,
-                                Model model, HttpServletRequest request, SessionLocaleResolver slr) {
+                                Model model) {
 
         List<Report> reports = reportService.listUserReports(id);
         switch (sortBy) {
@@ -61,29 +62,26 @@ public class UserController {
                 break;
         }
 
-        model.addAttribute("loc", slr.resolveLocale(request));
         model.addAttribute("reports", reports);
-        model.addAttribute("statusDTO", new ReportStatusDTO());
+        model.addAttribute("statusDTO", new ReportFilterDTO());
         model.addAttribute("sortBy", sortBy);
         return "user/reports";
     }
 
     @GetMapping("/new-report")
-    public String addNewReport(Model model, HttpServletRequest request, SessionLocaleResolver slr) {
+    public String addNewReport(Model model) {
         model.addAttribute("report", new ReportDTO());
         model.addAttribute("pageTitle", "Add");
-        model.addAttribute("loc", slr.resolveLocale(request));
         return "user/report_form";
     }
 
     @GetMapping("/reports/{userId}/edit/{id}")
     public String editReport(@PathVariable Long userId, @PathVariable Long id, Model model,
-                             RedirectAttributes ra, HttpServletRequest request, SessionLocaleResolver slr) {
+                             RedirectAttributes ra) {
         try {
             Report report = reportService.getById(id);
             model.addAttribute("report", report);
             model.addAttribute("pageTitle", "Edit");
-            model.addAttribute("loc", slr.resolveLocale(request));
             return "user/report_form";
 
         } catch (ReportNotFoundException ex) {
@@ -96,5 +94,11 @@ public class UserController {
     @ModelAttribute(name = "userID")
     public Long getAuthUserId(@AuthenticationPrincipal User user) {
         return user.getId();
+    }
+
+    @ModelAttribute("loc")
+    public Locale getCurrentLocale(HttpServletRequest request,
+                                   SessionLocaleResolver slr) {
+        return slr.resolveLocale(request);
     }
 }

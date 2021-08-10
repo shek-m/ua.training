@@ -1,5 +1,6 @@
 package com.example.taxservice.controller;
 
+import com.example.taxservice.dto.ReportFilterDTO;
 import com.example.taxservice.entity.Report;
 import com.example.taxservice.service.ReportService;
 import com.example.taxservice.service.UserService;
@@ -11,10 +12,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Locale;
 
 @Slf4j
 @Controller
@@ -54,6 +59,7 @@ public class AdminController {
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
         model.addAttribute("reports", reports);
+        model.addAttribute("dto", new ReportFilterDTO());
 
         return "admin/reports";
     }
@@ -70,5 +76,11 @@ public class AdminController {
         }
         model.addAttribute("report", report);
         return "admin/report_review_form";
+    }
+
+    @ModelAttribute("loc")
+    public Locale getCurrentLocale(HttpServletRequest request,
+                                   SessionLocaleResolver slr) {
+        return slr.resolveLocale(request);
     }
 }
