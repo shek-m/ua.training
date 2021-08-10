@@ -32,7 +32,7 @@
             </option>
         </select>
         &nbsp;
-        <input type="number" placeholder="Username" th:field="*{userid}">
+        <input type="number" placeholder="User ID" th:field="*{userid}">
         <button class="btn btn-outline-light" type="submit">Ok</button>
     </form>
 
@@ -58,6 +58,7 @@
                     <th>
                         <a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=reportType&sortDir=' + ${reverseSortDir}}">Report type</a>
                     </th>
+                    <th>User ID</th>
                     <th>
                         <a th:href="@{'/admin/page/' + ${currentPage} + '?sortField=companyName&sortDir=' + ${reverseSortDir}}">Company name</a>
                     </th>
@@ -86,10 +87,11 @@
                     <tr>
                         <td>[[${report.id}]]</td>
                         <td>[[${report.reportType}]]</td>
+                        <td>[[${report.user.id}]]</td>
                         <td>[[${report.companyName}]]</td>
                         <td>[[${report.companyId}]]</td>
                         <td>[[${report.city}]]</td>
-                        <td>[[${report.date}]]</td>
+                        <td>[[${#temporals.format(report.date, 'dd.MM.yyyy')}]]</td>
                         <td>[[${report.legalEntityType}]]</td>
                         <td>[[${report.currency}]]</td>
                         <td>[[${report.currentAssets}]]</td>

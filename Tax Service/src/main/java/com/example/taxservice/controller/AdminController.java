@@ -78,6 +78,12 @@ public class AdminController {
         return "admin/report_review_form";
     }
 
+    @GetMapping("/users")
+    public String viewAllUsers(Model model){
+        model.addAttribute("users", userService.loadAllRegisteredUsers());
+        return "admin/users";
+    }
+
     @ModelAttribute("loc")
     public Locale getCurrentLocale(HttpServletRequest request,
                                    SessionLocaleResolver slr) {

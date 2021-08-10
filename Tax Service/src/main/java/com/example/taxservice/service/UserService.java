@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Slf4j
 @Service
@@ -30,6 +32,10 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(@NonNull String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User \"" + username + "\" is not registered"));
+    }
+
+    public List<User> loadAllRegisteredUsers(){
+        return userRepository.findByRole(Role.USER);
     }
 
     public boolean isUserPresent(Long id) {
