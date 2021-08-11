@@ -22,11 +22,13 @@ import java.util.List;
 @Service
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Autowired
-    public UserService(UserRepository repository) {
+    public UserService(UserRepository repository, BCryptPasswordEncoder encoder) {
         this.userRepository = repository;
+        this.bCryptPasswordEncoder = encoder;
     }
 
     @Override
@@ -55,7 +57,7 @@ public class UserService implements UserDetailsService {
                     .role(Role.USER)
                     .username(userDto.getUsername())
                     .date(userDto.getDate())
-                    .password(new BCryptPasswordEncoder().encode(userDto.getPassword()))
+                    .password(bCryptPasswordEncoder.encode(userDto.getPassword()))
                     .build());
         } catch (DataIntegrityViolationException ex){
             throw new UserAlreadyExistException(ex.getMessage());

@@ -17,6 +17,7 @@ import java.util.Collections;
 @Builder
 @ToString
 @Data
+@EqualsAndHashCode
 
 @Entity
 public class User implements UserDetails {

@@ -66,7 +66,6 @@ public class ReportService {
     public Long countAllReportsDuringPeriod(LocalDate d1, LocalDate d2){
         return reportRepository.countByDateBetween(d1, d2);
     }
-
     public Report getById(@NonNull Long id) throws ReportNotFoundException {
         return reportRepository.findById(id).orElseThrow(() ->
             new ReportNotFoundException("Report with current ID doesn't exist"));}
