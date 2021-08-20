@@ -10,7 +10,6 @@
   <packaging>war</packaging>
 
   <name>Tax Service J2EE Maven Webapp</name>
-  <!-- FIXME change it to the project's website -->
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -49,7 +48,6 @@
       <version>2.5</version>
       <scope>provided</scope>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
     <dependency>
       <groupId>commons-dbcp</groupId>
       <artifactId>commons-dbcp</artifactId>
